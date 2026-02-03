@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akademia Piłkarska JŁ Wawer - Spełniamy Marzenia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #007bff;
+            --accent-gold: #FFD700;
+            --accent-red: #E30613;
+            --glass-bg: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Tło strony z Twoim boiskiem */
+        .site-wrapper {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('boisko.jpg') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+        }
+
+        /* Szklana Nawigacja */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container img {
+            height: 70px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 5% 50px;
+            text-align: center;
+        }
+
+        .hero-glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 50px;
+            border-radius: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        h1 span {
+            color: var(--accent-gold);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            background: var(--accent-red);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 900;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 20px rgba(227, 6, 19, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(227, 6, 19, 0.6);
+        }
+
+        /* Grid Szklanych Kafelków */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 50px 5%;
+        }
+
+        .glass-tile {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 20px;
+            transition: 0.4s ease;
+            text-align: center;
+        }
+
+        .glass-tile:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .glass-tile h3 {
+            color: var(--accent-gold);
+            margin: 15px 0;
+            text-transform: uppercase;
+            font-size: 1.4rem;
+        }
+
+        /* Sekcja Ekspercka */
+        .expert-section {
+            padding: 50px 5%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .expert-card {
+            background: rgba(0, 123, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-left: 5px solid var(--accent-gold);
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 800px;
+        }
+
+        .cert-badge {
+            width: 120px;
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: rgba(0,0,0,0.8);
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .nav-links { display: none; } /* Uproszczenie na mobile */
+        }
+    </style>
+</head>
+<body>
+
+<div class="site-wrapper">
+    <nav>
+        <div class="logo-container">
+            <img src="logo.png" alt="AP JŁ Wawer">
+        </div>
+        <div class="nav-links">
+            <a href="#o-nas">O nas</a>
+            <a href="#treningi">Treningi</a>
+            <a href="#zapisy" style="color: var(--accent-red);">Zapisy 2026</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-glass-card">
+            <h1>Akademia Piłkarska<br><span>JŁ Wawer</span></h1>
+            <p>Dajemy radość, uczymy pasji i spełniamy piłkarskie marzenia dzieci w samym sercu Wawra. Od 2011 roku szkolimy przyszłych mistrzów.</p>
+            <a href="#zapisy" class="cta-button">DOŁĄCZ DO DRUŻYNY!</a>
+            <br>
+            <img src="certyfikat.png" alt="Zielony Certyfikat PZPN" class="cert-badge">
+        </div>
+    </header>
+
+    <section class="features">
+        <div class="glass-tile">
+            <h3>Dobra zabawa</h3>
+            <p>Treningi u nas to czysta energia! Łączymy naukę piłki z kreatywną przygodą, bo wiemy, że uśmiech to najlepszy motywator.</p>
+        </div>
+        <div class="glass-tile">
+            <h3>Rozwój</h3>
+            <p>Budujemy pewność siebie, samodyscyplinę i cechy charakteru, które zaprocentują na boisku i w życiu codziennym.</p>
+        </div>
+        <div class="glass-tile">
+            <h3>Społeczność</h3>
+            <p>W naszych drużynach rodzą się przyjaźnie na lata. Uczymy wzajemnego szacunku i prawdziwej pracy zespołowej.</p>
+        </div>
+        <div class="glass-tile">
+            <h3>Zdrowie</h3>
+            <p>Kształtujemy zdrowe nawyki i koordynację pod okiem specjalistów. Ruch to fundament rozwoju Twojego dziecka.</p>
+        </div>
+    </section>
+
+    <section class="expert-section" id="o-nas">
+        <div class="expert-card">
+            <h2>Naukowe Podejście do Sportu</h2>
+            <p>Nad realizacją programu czuwa jeden z najlepszych fizjologów w Europie – <strong>Dr Piotr Wiśnik</strong>. Nasz system treningowy dostosowujemy indywidualnie do predyspozycji psychomotorycznych dzieci już od 4. roku życia, opierając się na Narodowym Modelu Gry.</p>
+        </div>
+    </section>
+
+    <section class="hero" id="zapisy">
+        <div class="hero-glass-card" style="margin-bottom: 50px;">
+            <h2>Widzimy się na treningu!</h2>
+            <p>Zrób pierwszy krok i podaruj dziecku sportowe wrażenia w najlepszej akademii w regionie.</p>
+            <p><strong>Zadzwoń do nas lub odwiedź nas na boisku w Wawrze!</strong></p>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Akademia Piłkarska JŁ Wawer. Projekt strony: Ekspert HTML/Modern Web.
+    </footer>
+</div>
+
+</body>
+</html>
