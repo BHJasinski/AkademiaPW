@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regulamin - Akademia Piłkarska JŁ Wawer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #2f9fe6;
+            --friendly-green: #2ecc71;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            line-height: 1.7;
+        }
+
+        .site-wrapper {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                        url('boisko.png') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        nav {
+            padding: 20px 5%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container img { height: 50px; }
+
+        .back-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            border: 1px solid var(--primary-blue);
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            background: var(--primary-blue);
+        }
+
+        .content-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 5%;
+        }
+
+        .glass-document {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            padding: 60px;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            display: block;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            color: var(--friendly-green);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        p { margin-bottom: 15px; font-weight: 400; font-size: 1rem; opacity: 0.9; }
+
+        ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        ul li::before {
+            content: '⚽';
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+            top: 2px;
+        }
+
+        .signature {
+            margin-top: 50px;
+            text-align: right;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 20px;
+        }
+
+        .signature strong {
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .glass-document { padding: 30px; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="site-wrapper">
+    <nav>
+        <div class="logo-container">
+            <img src="logo.png" alt="AP JŁ Wawer">
+        </div>
+        <a href="index.html" class="back-link">← Powrót</a>
+    </nav>
+
+    <div class="content-container">
+        <article class="glass-document">
+            <h1>Regulamin</h1>
+            <span class="subtitle">AKADEMII PIŁKARSKIEJ JŁ WAWER</span>
+
+            <div class="section">
+                <h2>§ 1 Postanowienia ogólne</h2>
+                <p>Stowarzyszenie Akademia Piłkarska JŁ Wawer zrzesza zawodników w oparciu o postanowienia statutu i niniejszego regulaminu.</p>
+            </div>
+
+            <div class="section">
+                <h2>§ 2 Warunki przynależności</h2>
+                <p>Warunki przynależności do Akademii:</p>
+                <ul>
+                    <li>Zakwalifikowanie do grupy przez trenera prowadzącego,</li>
+                    <li>Złożenie deklaracji o chęci przynależenia do AP JŁ „Wawer”,</li>
+                    <li>Posiadanie ważnych badań lekarskich zezwalających na uprawianie sportu w dyscyplinie piłka nożna,</li>
+                    <li>Pisemna zgoda rodziców (opiekunów prawnych) w przypadku osób niepełnoletnich,</li>
+                    <li>Opłacenie składek członkowskich,</li>
+                    <li>Zapoznanie się z niniejszym Regulaminem i przestrzeganie jego postanowień.</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>§ 3 Składki członkowskie</h2>
+                <p>Wysokość składki członkowskiej określa Zarząd Akademii. Składając deklarację przynależności do Akademii, zawodnik deklaruje wnoszenie składki członkowskiej za okres od 1 września do 30 czerwca (rok szkolny).</p>
+                <p>Rodzice/prawni opiekunowie Zawodników APJŁ Wawer zobowiązują się do terminowego opłacania składek <strong>do 10-go każdego miesiąca</strong>.</p>
+            </div>
+
+            <div class="section">
+                <h2>§ 4 Obowiązki zawodnika</h2>
+                <p>Każdy zawodnik Akademii zobowiązany jest do:</p>
+                <ul>
+                    <li>Systematycznego i aktywnego uczestnictwa w zajęciach oraz imprezach sportowych wg harmonogramu,</li>
+                    <li>Wypełnianie poleceń trenera w trakcie zajęć i imprez oraz zachowywanie się w sposób kulturalny,</li>
+                    <li>Dbałości o dobry wizerunek Akademii oraz powierzony sprzęt,</li>
+                    <li>Przestrzegania przepisów BHP i zasad dyscypliny,</li>
+                    <li>Trenowania w stroju właściwym dla Akademii,</li>
+                    <li>Bezzwłocznego zgłaszania trenerowi wszelkich dolegliwości zdrowotnych,</li>
+                    <li>Reprezentowania Akademii w zawodach sportowych w przypadku powołania.</li>
+                    <li>Dbałości o koleżeńską atmosferę w zespole.</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>§ 5 Zmiana przynależności</h2>
+                <p>Zmiana przynależności klubowej Zawodników Akademii Piłkarskiej JŁ Wawer rejestrowanych w systemie EXTRANET PZPN odbywa się na podstawia przepisów PZPN.</p>
+            </div>
+
+            <div class="section">
+                <h2>§ 6 Wyłączność treningowa</h2>
+                <p>Zawodnik Akademii Piłkarskiej JŁ Wawer nie może bez zgody stowarzyszenia uczestniczyć w treningach innego klubu.</p>
+            </div>
+
+            <div class="section">
+                <h2>§ 7 Koszty dodatkowe</h2>
+                <p>Koszty wyjazdów na obozy sportowe, turnieje itp. pokrywają uczestnicy.</p>
+            </div>
+
+            <div class="section">
+                <h2>§ 8 Wizerunek i dane osobowe</h2>
+                <p>Rodzice/opiekunowie prawni wyrażają zgodę na udostępnienie wizerunku zawodnika oraz przetwarzanie danych osobowych na potrzeby Akademii i organizatorów imprez.</p>
+            </div>
+
+            <div class="section">
+                <h2>§ 9 Kary i postanowienia końcowe</h2>
+                <p>Nieprzestrzeganie niniejszego regulaminu może skutkować nałożeniem kar dyscyplinarnych: finansowych, czasowej dyskwalifikacji, zawieszenia lub wykluczenia z klubu.</p>
+                <p>Decyzje podejmuje Zarząd Stowarzyszenia APJŁ Wawer na podstawie Uchwały.</p>
+            </div>
+
+            <div class="signature">
+                <p>Prezes Stowarzyszenia</p>
+                <strong>Janusz Łagiewnicki</strong>
+            </div>
+        </article>
+    </div>
+
+    <footer style="text-align: center; opacity: 0.5; font-size: 0.8rem;">
+        &copy; 2026 AP JŁ Wawer - Regulamin obowiązujący
+    </footer>
+</div>
+
+</body>
+</html>
