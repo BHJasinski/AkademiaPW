@@ -143,6 +143,7 @@
             tr { display: block; margin-bottom: 25px; border-bottom: 2px solid var(--primary-blue); padding: 15px; border-radius: 15px; background: rgba(255,255,255,0.02); }
             td { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border: none; }
             td::before { content: attr(data-label); font-weight: 700; color: var(--primary-blue); text-transform: uppercase; font-size: 0.7rem; }
+            .map-link { text-align: right; justify-content: flex-end; }
         }
 
         .info-box {
@@ -164,7 +165,7 @@
 
     <div class="container">
         <h1>Grafik <span>Treningowy</span></h1>
-        <span class="subtitle">Wybierz grupę swojego dziecka i sprawdź terminy ⚽</span>
+        <span class="subtitle">Kliknij w lokalizację, aby otworzyć nawigację ⚽</span>
 
         <div class="table-container">
             <table>
@@ -173,7 +174,7 @@
                         <th>Rocznik</th>
                         <th>Dzień</th>
                         <th>Godzina</th>
-                        <th>Lokalizacja (Kliknij w mapę)</th>
+                        <th>Miejsce i Nawigacja</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -181,88 +182,88 @@
                         <td data-label="Rocznik"><span class="rocznik-badge">2013/14</span></td>
                         <td data-label="Dzień" class="day-highlight">Poniedziałek</td>
                         <td data-label="Godzina">16:30</td>
-                        <td><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
                     </tr>
                     <tr>
                         <td data-label="Rocznik"><span class="rocznik-badge">2013/14</span></td>
                         <td data-label="Dzień" class="day-highlight">Środa</td>
                         <td data-label="Godzina">17:00</td>
-                        <td><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
                     </tr>
                     <tr>
                         <td data-label="Rocznik"><span class="rocznik-badge">2013/14</span></td>
                         <td data-label="Dzień" class="day-highlight">Piątek</td>
                         <td data-label="Godzina">16:45</td>
-                        <td><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
                     </tr>
                     <tr>
                         <td data-label="Rocznik"><span class="rocznik-badge">2013/14</span></td>
                         <td data-label="Dzień" class="day-highlight">---</td>
                         <td data-label="Godzina">---</td>
-                        <td><a href="https://maps.google.com/?q=Bartoszycka+Wawer" target="_blank" class="map-link">🏢 Hala Bartoszycka</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/LuKDBXmBMZ9Z9cp18" target="_blank" class="map-link">🏢 Hala Bartoszycka</a></td>
                     </tr>
 
                     <tr>
                         <td data-label="Rocznik"><span class="rocznik-badge">2015/16</span></td>
                         <td data-label="Dzień" class="day-highlight">Poniedziałek</td>
                         <td data-label="Godzina">17:30</td>
-                        <td><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
                     </tr>
                     <tr>
                         <td data-label="Rocznik"><span class="rocznik-badge">2015/16</span></td>
                         <td data-label="Dzień" class="day-highlight">Środa</td>
                         <td data-label="Godzina">17:30</td>
-                        <td><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
                     </tr>
                     <tr>
                         <td data-label="Rocznik"><span class="rocznik-badge">2015/16</span></td>
                         <td data-label="Dzień" class="day-highlight">---</td>
                         <td data-label="Godzina">---</td>
-                        <td><a href="https://maps.google.com/?q=Bartoszycka+Wawer" target="_blank" class="map-link">🏢 Hala Bartoszycka</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/LuKDBXmBMZ9Z9cp18" target="_blank" class="map-link">🏢 Hala Bartoszycka</a></td>
                     </tr>
 
                     <tr>
                         <td data-label="Rocznik"><span class="rocznik-badge">2017</span></td>
                         <td data-label="Dzień" class="day-highlight">Poniedziałek</td>
                         <td data-label="Godzina">17:30</td>
-                        <td><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
                     </tr>
                     <tr>
                         <td data-label="Rocznik"><span class="rocznik-badge">2017</span></td>
                         <td data-label="Dzień" class="day-highlight">Środa</td>
                         <td data-label="Godzina">17:30</td>
-                        <td><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
                     </tr>
                     <tr>
                         <td data-label="Rocznik"><span class="rocznik-badge">2017</span></td>
                         <td data-label="Dzień" class="day-highlight">Czwartek</td>
                         <td data-label="Godzina">17:00</td>
-                        <td><a href="https://maps.google.com/?q=Bartoszycka+45+Warszawa" target="_blank" class="map-link">🏢 Hala Bartoszycka 45/47</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/LuKDBXmBMZ9Z9cp18" target="_blank" class="map-link">🏢 Hala Bartoszycka</a></td>
                     </tr>
 
                     <tr>
                         <td data-label="Rocznik"><span class="rocznik-badge">2018/19+</span></td>
                         <td data-label="Dzień" class="day-highlight">Poniedziałek</td>
                         <td data-label="Godzina">17:30</td>
-                        <td><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
                     </tr>
                     <tr>
                         <td data-label="Rocznik"><span class="rocznik-badge">2018/19+</span></td>
                         <td data-label="Dzień" class="day-highlight">Środa</td>
                         <td data-label="Godzina">17:30</td>
-                        <td><a href="https://maps.google.com/?q=Bartoszycka+Wawer" target="_blank" class="map-link">🏢 Hala Bartoszycka</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/LuKDBXmBMZ9Z9cp18" target="_blank" class="map-link">🏢 Hala Bartoszycka</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="info-box">
-            <p><strong>Uwaga:</strong> Treningi na boisku/orliku odbywają się w zależności od warunków pogodowych. Prosimy o sprawdzanie komunikatów na grupie przed każdym treningiem!</p>
+            <p><strong>💡 Porada:</strong> Jeśli wybierasz się do nas pierwszy raz, kliknij w nazwę miejsca powyżej – nawigacja zaprowadzi Cię pod same drzwi!</p>
         </div>
     </div>
 
     <footer style="text-align: center; opacity: 0.5; font-size: 0.8rem; padding: 40px;">
-        © 2026 Akademia Piłkarska JŁ Wawer | Wszystkie prawa zastrzeżone
+        © 2026 Akademia Piłkarska JŁ Wawer | Do zobaczenia na boisku!
     </footer>
 </div>
 
