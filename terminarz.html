@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminarz Treningów - AP JŁ Wawer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #2f9fe6;
+            --friendly-green: #2ecc71;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .site-wrapper {
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
+                        url('boisko.png') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        nav {
+            padding: 20px 5%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container img { height: 50px; }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 10px 20px;
+            border: 1px solid var(--primary-blue);
+            border-radius: 50px;
+            transition: 0.3s;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .back-btn:hover { background: var(--primary-blue); }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 5%;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        h1 span { color: var(--primary-blue); }
+
+        .subtitle {
+            display: block;
+            text-align: center;
+            margin-bottom: 40px;
+            opacity: 0.7;
+            font-weight: 300;
+        }
+
+        /* Styl Tabeli */
+        .table-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        thead { background: rgba(47, 159, 230, 0.2); }
+
+        th {
+            padding: 20px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: var(--primary-blue);
+        }
+
+        td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.95rem;
+        }
+
+        tr:hover { background: rgba(255,255,255,0.05); }
+
+        .rocznik-badge {
+            background: var(--primary-blue);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+
+        .day-highlight { color: var(--friendly-green); font-weight: 700; }
+
+        /* LINK DO MAPY */
+        .map-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+            font-size: 0.85rem;
+        }
+
+        .map-link:hover { color: var(--primary-blue); transform: translateX(5px); }
+
+        .map-icon { font-size: 1.2rem; }
+
+        /* Responsywność */
+        @media (max-width: 768px) {
+            thead { display: none; }
+            tr { display: block; margin-bottom: 25px; border-bottom: 2px solid var(--primary-blue); padding: 15px; border-radius: 15px; background: rgba(255,255,255,0.02); }
+            td { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border: none; text-align: right; }
+            td::before { content: attr(data-label); font-weight: 700; color: var(--primary-blue); text-transform: uppercase; font-size: 0.7rem; }
+            .map-link { justify-content: flex-end; }
+        }
+
+        .info-box {
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(46, 204, 113, 0.05);
+            border-left: 5px solid var(--friendly-green);
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="site-wrapper">
+    <nav>
+        <div class="logo-container"><img src="logo.png" alt="AP JŁ Wawer"></div>
+        <a href="index.html" class="back-btn">← Powrót do strony</a>
+    </nav>
+
+    <div class="container">
+        <h1>Terminarz <span>Treningów</span></h1>
+        <span class="subtitle">Kliknij w miejsce treningu, aby otworzyć nawigację 📍</span>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rocznik / Grupa</th>
+                        <th>Dzień</th>
+                        <th>Godzina</th>
+                        <th>Miejsce i Nawigacja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Rocznik"><span class="rocznik-badge">2013/14 (Młodzik)</span></td>
+                        <td data-label="Dzień" class="day-highlight">Poniedziałek</td>
+                        <td data-label="Godzina">16:30</td>
+                        <td data-label="Miejsce">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Orlik+Wawer" target="_blank" class="map-link">
+                                <span class="map-icon">📍</span> Boisko / Orlik
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Rocznik"><span class="rocznik-badge">2013/14 (Młodzik)</span></td>
+                        <td data-label="Dzień" class="day-highlight">Środa</td>
+                        <td data-label="Godzina">17:00</td>
+                        <td data-label="Miejsce">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Orlik+Wawer" target="_blank" class="map-link">
+                                <span class="map-icon">📍</span> Boisko / Orlik
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Rocznik"><span class="rocznik-badge">2013/14 (Młodzik)</span></td>
+                        <td data-label="Dzień" class="day-highlight">Piątek</td>
+                        <td data-label="Godzina">16:45</td>
+                        <td data-label="Miejsce">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Orlik+Wawer" target="_blank" class="map-link">
+                                <span class="map-icon">📍</span> Boisko / Orlik
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Rocznik"><span class="rocznik-badge">2013/14 (Młodzik)</span></td>
+                        <td data-label="Dzień" class="day-highlight">---</td>
+                        <td data-label="Godzina">---</td>
+                        <td data-label="Miejsce">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Bartoszycka+45/47+Warszawa" target="_blank" class="map-link">
+                                <span class="map-icon">🏢</span> Hala Bartoszycka
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td data-label="Rocznik"><span class="rocznik-badge">2015/16 (Orlik)</span></td>
+                        <td data-label="Dzień" class="day-highlight">Poniedziałek</td>
+                        <td data-label="Godzina">17:30</td>
+                        <td data-label="Miejsce">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Orlik+Wawer" target="_blank" class="map-link">
+                                <span class="map-icon">📍</span> Boisko / Orlik
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Rocznik"><span class="rocznik-badge">2015/16 (Orlik)</span></td>
+                        <td data-label="Dzień" class="day-highlight">Środa</td>
+                        <td data-label="Godzina">17:30</td>
+                        <td data-label="Miejsce">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Orlik+Wawer" target="_blank" class="map-link">
+                                <span class="map-icon">📍</span> Boisko / Orlik
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Rocznik"><span class="rocznik-badge">2015/16 (Orlik)</span></td>
+                        <td data-label="Dzień" class="day-highlight">---</td>
+                        <td data-label="Godzina">---</td>
+                        <td data-label="Miejsce">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Bartoszycka+45/47+Warszawa" target="_blank" class="map-link">
+                                <span class="map-icon">🏢</span> Hala Bartoszycka
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td data-label="Rocznik"><span class="rocznik-badge">2017 (Żak)</span></td>
+                        <td data-label="Dzień" class="day-highlight">Poniedziałek</td>
+                        <td data-label="Godzina">17:30</td>
+                        <td data-label="Miejsce">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Orlik+Wawer" target="_blank" class="map-link">
+                                <span class="map-icon">📍</span> Boisko / Orlik
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Rocznik"><span class="rocznik-badge">2017 (Żak)</span></td>
+                        <td data-label="Dzień" class="day-highlight">Środa</td>
+                        <td data-label="Godzina">17:30</td>
+                        <td data-label="Miejsce">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Orlik+Wawer" target="_blank" class="map-link">
+                                <span class="map-icon">📍</span> Boisko / Orlik
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Rocznik"><span class="rocznik-badge">2017 (Żak)</span></td>
+                        <td data-label="Dzień" class="day-highlight">Czwartek</td>
+                        <td data-label="Godzina">17:00</td>
+                        <td data-label="Miejsce">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Bartoszycka+45/47+Warszawa" target="_blank" class="map-link">
+                                <span class="map-icon">🏢</span> Hala Bartoszycka 45/47
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td data-label="Rocznik"><span class="rocznik-badge">2018/19 i młodsi</span></td>
+                        <td data-label="Dzień" class="day-highlight">Poniedziałek</td>
+                        <td data-label="Godzina">17:30</td>
+                        <td data-label="Miejsce">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Orlik+Wawer" target="_blank" class="map-link">
+                                <span class="map-icon">📍</span> Boisko / Orlik
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Rocznik"><span class="rocznik-badge">2018/19 i młodsi</span></td>
+                        <td data-label="Dzień" class="day-highlight">Środa</td>
+                        <td data-label="Godzina">17:30</td>
+                        <td data-label="Miejsce">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Bartoszycka+45/47+Warszawa" target="_blank" class="map-link">
+                                <span class="map-icon">🏢</span> Hala Bartoszycka
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="info-box">
+            <p><strong>💡 Wskazówka:</strong> Kliknij w nazwę miejsca (np. Hala Bartoszycka), aby automatycznie otworzyć nawigację w telefonie.</p>
+        </div>
+    </div>
+
+    <footer style="text-align: center; opacity: 0.5; font-size: 0.8rem; margin-top: 50px; padding: 20px;">
+        &copy; 2026 AP JŁ Wawer | Pasja i Rozwój
+    </footer>
+</div>
+
+</body>
+</html>
