@@ -29,7 +29,7 @@
             scroll-behavior: smooth;
         }
 
-        /* TŁO Z EFEKTEM KEN BURNS I SOCZYSTYMI KOLORAMI */
+        /* TŁO Z EFEKTEM KEN BURNS */
         .site-wrapper {
             position: relative;
             min-height: 100vh;
@@ -129,12 +129,6 @@
             text-transform: uppercase;
         }
 
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(46, 204, 113, 0.5);
-            filter: brightness(1.1);
-        }
-
         /* Sekcje Ogólne */
         .how-to-start, .features, .testimonials, .expert-section, .gallery-section {
             padding: 60px 5%;
@@ -156,7 +150,6 @@
             padding: 30px;
             border-radius: 20px;
             border: 1px solid var(--glass-border);
-            transition: 0.3s;
         }
 
         .step-card h3 { color: var(--friendly-green); margin-bottom: 10px; }
@@ -173,34 +166,20 @@
             border: 1px solid var(--glass-border);
             padding: 40px;
             border-radius: 20px;
-            transition: 0.4s ease;
             text-align: center;
         }
 
-        .glass-tile:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .glass-tile h3 {
-            color: var(--accent-brand);
-            margin: 15px 0;
-            text-transform: uppercase;
-        }
-
-        /* STYL GALERII SZKLANEJ */
+        /* GALERIA - POPRAWKI STABILNOŚCI I MOBILNOŚCI */
         .gallery-container {
             position: relative;
             max-width: 1000px;
             margin: 0 auto;
             background: var(--glass-bg);
             backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
             border: 1px solid var(--glass-border);
             padding: 20px;
             border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            overflow: hidden;
+            overflow: hidden; /* Gwarantuje stabilność strony */
         }
 
         .gallery-slider {
@@ -212,7 +191,6 @@
             min-width: 100%;
             display: flex;
             justify-content: center;
-            align-items: center;
         }
 
         .gallery-item img {
@@ -228,25 +206,13 @@
             transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
             width: 50px;
             height: 50px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: 0.3s;
             z-index: 10;
-        }
-
-        .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--accent-brand);
-            border-color: var(--accent-brand);
         }
 
         .prev-btn { left: 30px; }
@@ -264,13 +230,11 @@
             height: 10px;
             background: rgba(255,255,255,0.2);
             border-radius: 50%;
-            cursor: pointer;
             transition: 0.3s;
         }
 
         .dot.active {
             background: var(--accent-brand);
-            box-shadow: 0 0 10px var(--accent-brand);
             transform: scale(1.2);
         }
 
@@ -294,8 +258,6 @@
             border-bottom: 2px solid var(--friendly-green);
         }
 
-        .cert-badge { width: 120px; margin-top: 20px; }
-
         footer {
             text-align: center;
             padding: 60px 40px;
@@ -304,11 +266,22 @@
             color: #888;
         }
 
+        /* MEDIA QUERIES - OPTYMALIZACJA MOBILNA */
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; }
             .nav-links { display: none; }
             .hero-glass-card { padding: 30px 20px; }
-            .nav-btn { width: 40px; height: 40px; font-size: 16px; }
+            
+            /* Ukrywamy przyciski na mobile, by galeria była czysta */
+            .nav-btn { display: none; } 
+            
+            .gallery-container {
+                padding: 10px; /* Mniejsze paddingi na komórce */
+                border-radius: 20px;
+            }
+            .gallery-item img {
+                max-height: 300px; /* Niższe zdjęcia na telefonie */
+            }
         }
     </style>
 </head>
@@ -334,7 +307,7 @@
             <br><br>
             <a href="#zapisy" class="cta-button">ODBIERZ DARMOWY TRENING!</a>
             <br><br><br>
-            <img src="certyfikat.png" alt="Zielony Certyfikat PZPN" class="cert-badge">
+            <img src="certyfikat.png" alt="Zielony Certyfikat PZPN" class="cert-badge" style="width: 120px; margin-top: 20px;">
         </div>
     </header>
 
@@ -454,8 +427,13 @@
         updateGallery();
     }
 
-    // Automatyczne przewijanie co 5 sekund
-    setInterval(() => moveSlide(1), 5000);
+    // AUTOMATYCZNE PRZEWIJANIE
+    // Na komputerach (szeroki ekran) co 5 sekund, na komórkach co 2 sekundy
+    const slideSpeed = window.innerWidth < 768 ? 2000 : 5000;
+    
+    setInterval(() => {
+        moveSlide(1);
+    }, slideSpeed);
 </script>
 
 </body>
