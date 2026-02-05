@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nasza Kadra - AP JŁ Wawer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #2f9fe6;
+            --accent-brand: #2f9fe6;
+            --friendly-green: #2ecc71; 
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Tło identyczne jak na stronie głównej */
+        .site-wrapper {
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 5%;
+        }
+
+        .site-wrapper::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 100%), 
+                        url('boisko.png') no-repeat center center;
+            background-size: cover;
+            filter: saturate(1.2) brightness(0.8);
+            z-index: -1;
+        }
+
+        h1 {
+            text-transform: uppercase;
+            font-weight: 900;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        h1 span { color: var(--primary-blue); }
+
+        /* KONTENER TRENERÓW (Gry komputerowe Style) */
+        .coaches-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 40px;
+        }
+
+        .coach-card {
+            position: relative;
+            width: 280px;
+            height: 400px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Postać trenera */
+        .coach-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* PNG bez tła będzie wyglądać świetnie */
+            transition: transform 0.4s ease, filter 0.4s ease;
+            filter: grayscale(100%) brightness(0.7);
+        }
+
+        /* Efekt Hover - Podświetlenie jak w grze */
+        .coach-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 30px rgba(47, 159, 230, 0.4);
+            background: rgba(47, 159, 230, 0.1);
+        }
+
+        .coach-card:hover img {
+            filter: grayscale(0%) brightness(1.1);
+            transform: scale(1.1);
+        }
+
+        /* Podpis na karcie */
+        .coach-name-tag {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        /* PANEL OPISU NA DOLE */
+        .description-panel {
+            width: 100%;
+            max-width: 900px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 30px;
+            min-height: 150px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .description-panel.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .description-panel h3 {
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .description-panel p {
+            font-size: 1.1rem;
+            color: #ddd;
+            line-height: 1.6;
+        }
+
+        .back-link {
+            margin-top: 40px;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            border-bottom: 2px solid var(--primary-blue);
+            transition: 0.3s;
+        }
+
+        .back-link:hover { color: var(--primary-blue); }
+
+        /* Mobilność */
+        @media (max-width: 900px) {
+            .coaches-row { flex-direction: column; align-items: center; }
+            .coach-card { width: 100%; max-width: 300px; height: 350px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="site-wrapper">
+    <a href="index.html" class="back-link">← Wróć do strony głównej</a>
+    
+    <h1>Poznaj Naszych <span>Ekspertów</span></h1>
+
+    <div class="coaches-row">
+        <div class="coach-card" onmouseover="showDesc('trener1')" onmouseout="hideDesc()">
+            <img src="trener 1.png" alt="Trener 1">
+            <div class="coach-name-tag">Trener Jan Kowalski</div>
+        </div>
+
+        <div class="coach-card" onmouseover="showDesc('trener2')" onmouseout="hideDesc()">
+            <img src="trener 2.png" alt="Trener 2">
+            <div class="coach-name-tag">Trener Adam Nowak</div>
+        </div>
+
+        <div class="coach-card" onmouseover="showDesc('trener3')" onmouseout="hideDesc()">
+            <img src="trener 3.png" alt="Trener 3">
+            <div class="coach-name-tag">Trener Piotr Wiśnik</div>
+        </div>
+    </div>
+
+    <div class="description-panel" id="desc-panel">
+        <h3 id="coach-title">Wybierz trenera</h3>
+        <p id="coach-text">Najedź kursorem na postać, aby zobaczyć doświadczenie i specjalizację naszych szkoleniowców.</p>
+    </div>
+
+</div>
+
+<script>
+    const data = {
+        trener1: {
+            name: "Jan Kowalski",
+            text: "Licencjonowany trener UEFA B. Specjalista od szkolenia technicznego najmłodszych grup. W akademii od 2015 roku."
+        },
+        trener2: {
+            name: "Adam Nowak",
+            text: "Były zawodnik ligowy, pasjonat motoryki. Skupia się na rozwoju szybkości i koordynacji u dzieci."
+        },
+        trener3: {
+            name: "Dr Piotr Wiśnik",
+            text: "Główny metodyk akademii. Jeden z najlepszych fizjologów w kraju, dba o naukowe podejście do każdego treningu."
+        }
+    };
+
+    const panel = document.getElementById('desc-panel');
+    const title = document.getElementById('coach-title');
+    const text = document.getElementById('coach-text');
+
+    function showDesc(id) {
+        panel.classList.add('active');
+        title.innerText = data[id].name;
+        text.innerText = data[id].text;
+    }
+
+    function hideDesc() {
+        // Opcjonalnie: możesz zostawić opis ostatnio wybranego trenera
+        // panel.classList.remove('active'); 
+    }
+</script>
+
+</body>
+</html>
