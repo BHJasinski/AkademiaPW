@@ -12,7 +12,7 @@
             --friendly-green: #2ecc71; 
             --glass-bg: rgba(255, 255, 255, 0.12);
             --glass-border: rgba(255, 255, 255, 0.2);
-            --nav-height: 80px; /* Stała wysokość menu */
+            --nav-height: 80px;
         }
 
         * {
@@ -30,13 +30,44 @@
             scroll-behavior: smooth;
         }
 
+        /* --- PŁYWAJĄCY PRZYCISK FB --- */
+        .fb-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #1877f2;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            z-index: 10000;
+            box-shadow: 0 10px 25px rgba(24, 119, 242, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .fb-float:hover {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 15px 30px rgba(24, 119, 242, 0.6);
+        }
+
+        .fb-float span {
+            color: white;
+            font-size: 32px;
+            font-weight: 900;
+            font-family: Arial, sans-serif;
+            margin-top: 4px;
+        }
+
         /* TŁO Z EFEKTEM KEN BURNS */
         .site-wrapper {
             position: relative;
             min-height: 100vh;
             width: 100%;
             overflow: hidden;
-            /* WAŻNE: Odsuwamy treść od samej góry, bo menu jest "przyklejone" */
             padding-top: var(--nav-height);
         }
 
@@ -91,7 +122,6 @@
             transition: transform 0.3s ease;
         }
 
-        /* MENU DESKTOPOWE */
         .nav-menu {
             display: flex;
             list-style: none;
@@ -118,7 +148,6 @@
             box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
         }
 
-        /* PRZYCISK HAMBURGER (Tylko Mobile) */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -178,7 +207,6 @@
             text-transform: uppercase;
         }
 
-        /* Sekcje Ogólne */
         .how-to-start, .features, .testimonials, .expert-section, .gallery-section {
             padding: 60px 5%;
             position: relative;
@@ -287,7 +315,6 @@
             transform: scale(1.2);
         }
 
-        /* Eksperci i opinie */
         .expert-section { display: flex; justify-content: center; }
         .expert-card {
             background: rgba(47, 159, 230, 0.15);
@@ -315,10 +342,16 @@
             color: #888;
         }
 
-        /* MEDIA QUERIES - OPTYMALIZACJA MOBILNA */
         @media (max-width: 900px) {
-            .hamburger { display: flex; }
+            .fb-float {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+            .fb-float span { font-size: 26px; }
 
+            .hamburger { display: flex; }
             .nav-menu {
                 position: fixed;
                 top: 0;
@@ -333,15 +366,11 @@
                 gap: 40px;
                 box-shadow: -10px 0 30px rgba(0,0,0,0.5);
             }
-
             .nav-menu.active { right: 0; }
-
             .nav-menu a { font-size: 1.4rem; }
-
             .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-
             h1 { font-size: 2.2rem; }
             .nav-btn { display: none; } 
             .gallery-container { padding: 10px; border-radius: 20px; }
@@ -350,6 +379,10 @@
     </style>
 </head>
 <body>
+
+<a href="https://www.facebook.com/profile.php?id=100057134371999" target="_blank" class="fb-float" title="Odwiedź nas na Facebooku">
+    <span>f</span>
+</a>
 
 <div class="site-wrapper">
     <nav class="main-navbar">
@@ -376,9 +409,9 @@
         <div class="hero-glass-card">
             <h1>Akademia Piłkarska<br><span>JŁ Wawer</span></h1>
             <p>Najmłodsi mistrzowie w Wawrze trenują z nami! Od 2011 roku budujemy pasję, radość i piłkarskie charaktery.</p>
-            <br><br>
-            <a href="#zapisy" class="cta-button">ODBIERZ DARMOWY TRENING!</a>
             <br><br><br>
+            <a href="#zapisy" class="cta-button">ODBIERZ DARMOWY TRENING!</a>
+            <br><br><br><br>
             <img src="certyfikat.png" alt="Zielony Certyfikat PZPN" class="cert-badge" style="width: 120px; margin-top: 20px;">
         </div>
     </header>
@@ -464,7 +497,7 @@
             <h2>Widzimy się na treningu!</h2>
             <p>Skorzystaj z szansy i podaruj dziecku niezapomniane sportowe wrażenia.</p>
             <p><strong>Zadzwoń: +48 602 281 550</strong> lub odwiedź nas w Wawrze!</p>
-            <br><br>
+            <br><br><br>
             <a href="tel:+48602281550" class="cta-button">ZADZWOŃ I REZERWUJ</a>
         </div>
     </section>
@@ -475,7 +508,6 @@
 </div>
 
 <script>
-    // LOGIKA MENU MOBILNEGO
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
 
@@ -491,7 +523,6 @@
         });
     });
 
-    // LOGIKA GALERII
     let currentIdx = 0;
     const slider = document.getElementById('slider');
     const dots = document.querySelectorAll('.dot');
