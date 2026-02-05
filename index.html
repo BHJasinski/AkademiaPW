@@ -196,7 +196,7 @@
             text-transform: uppercase;
         }
 
-        .how-to-start, .features, .testimonials, .expert-section, .gallery-section {
+        .how-to-start, .features, .testimonials, .expert-section, .gallery-section, .kit-preview {
             padding: 60px 5%;
             position: relative;
             z-index: 1;
@@ -234,6 +234,29 @@
             border-radius: 20px;
             text-align: center;
         }
+
+        /* SEKCJA STROJE - PREVIEW */
+        .kit-preview-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .kit-preview-img img {
+            max-width: 300px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+            transition: 0.3s;
+        }
+
+        .kit-preview-img img:hover { transform: scale(1.05); }
 
         /* GALERIA */
         .gallery-container {
@@ -353,6 +376,8 @@
             h1 { font-size: 2.2rem; }
             .nav-btn { display: none; } 
             .gallery-item img { max-height: 300px; }
+            .kit-preview-container { flex-direction: column; text-align: center; }
+            .kit-preview-img img { max-width: 200px; }
         }
     </style>
 </head>
@@ -371,7 +396,7 @@
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html">Start</a></li>
                 <li><a href="trenerzy.html">Kadra</a></li>
-                <li><a href="terminarz.html">Terminarz</a></li>
+                <li><a href="stroje.html">Stroje</a></li> <li><a href="terminarz.html">Terminarz</a></li>
                 <li><a href="regulamin.html">Regulamin</a></li>
                 <li><a href="#zapisy" class="nav-cta">Darmowy Trening</a></li>
             </ul>
@@ -393,6 +418,21 @@
             <img src="certyfikat.png" alt="Zielony Certyfikat PZPN" class="cert-badge" style="width: 120px; margin-top: 20px;">
         </div>
     </header>
+
+    <section class="kit-preview">
+        <h2>Wyglądaj jak zawodowiec</h2>
+        <div class="kit-preview-container">
+            <div class="kit-preview-img">
+                <img src="stroje.png" alt="Strój AP JŁ Wawer">
+            </div>
+            <div class="kit-preview-text">
+                <h3>Oficjalny zestaw Nike</h3>
+                <p>Każdy zawodnik naszej Akademii trenuje w profesjonalnym stroju marki Nike. Dowiedz się więcej o wymiarach i cenach zestawów.</p>
+                <br>
+                <a href="stroje.html" class="cta-button" style="padding: 12px 30px; font-size: 0.9rem;">Sprawdź szczegóły</a>
+            </div>
+        </div>
+    </section>
 
     <section class="how-to-start" id="proces">
         <h2>3 kroki do sportowej przygody:</h2>
