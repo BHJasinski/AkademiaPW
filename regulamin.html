@@ -11,6 +11,7 @@
             --friendly-green: #2ecc71;
             --glass-bg: rgba(255, 255, 255, 0.08);
             --glass-border: rgba(255, 255, 255, 0.15);
+            --nav-height: 80px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,44 +24,86 @@
         }
 
         .site-wrapper {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
                         url('boisko.png') no-repeat center center fixed;
             background-size: cover;
-            min-height: 100vh;
+            padding-top: calc(var(--nav-height) + 30px);
             padding-bottom: 50px;
         }
 
-        nav {
-            padding: 20px 5%;
-            background: rgba(255, 255, 255, 0.05);
+        /* --- STYL MENU (Zgodny z całym projektem) --- */
+        .main-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass-border);
+            z-index: 9999;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            height: 100%;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 5%;
         }
 
-        .logo-container img { height: 50px; }
+        .nav-logo img { height: 50px; }
 
-        .back-link {
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-menu a {
             color: white;
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.9rem;
             text-transform: uppercase;
-            border: 1px solid var(--primary-blue);
-            padding: 10px 20px;
-            border-radius: 50px;
+            font-size: 0.85rem;
             transition: 0.3s;
         }
 
-        .back-link:hover {
-            background: var(--primary-blue);
+        .nav-menu a:hover { color: var(--primary-blue); }
+
+        .nav-cta {
+            background: var(--friendly-green);
+            padding: 10px 20px;
+            border-radius: 50px;
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 10001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+        }
+
+        /* DOKUMENT */
         .content-container {
             max-width: 900px;
-            margin: 50px auto;
+            margin: 0 auto;
             padding: 0 5%;
         }
 
@@ -92,9 +135,7 @@
             opacity: 0.8;
         }
 
-        .section {
-            margin-bottom: 30px;
-        }
+        .section { margin-bottom: 30px; }
 
         .section h2 {
             color: var(--friendly-green);
@@ -107,10 +148,7 @@
 
         p { margin-bottom: 15px; font-weight: 400; font-size: 1rem; opacity: 0.9; }
 
-        ul {
-            list-style: none;
-            margin-bottom: 20px;
-        }
+        ul { list-style: none; margin-bottom: 20px; }
 
         ul li {
             position: relative;
@@ -139,7 +177,25 @@
             font-size: 1.1rem;
         }
 
-        @media (max-width: 768px) {
+        /* MEDIA QUERIES */
+        @media (max-width: 900px) {
+            .hamburger { display: flex; }
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 30px;
+                transition: 0.5s;
+            }
+            .nav-menu.active { right: 0; }
+            .nav-menu a { font-size: 1.5rem; }
+
             .glass-document { padding: 30px; }
             h1 { font-size: 1.8rem; }
         }
@@ -147,14 +203,27 @@
 </head>
 <body>
 
-<div class="site-wrapper">
-    <nav>
-        <div class="logo-container">
+<nav class="main-navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
             <img src="logo.png" alt="AP JŁ Wawer">
+        </a>
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="index.html">Start</a></li>
+            <li><a href="trenerzy.html">Kadra</a></li>
+            <li><a href="terminarz.html">Terminarz</a></li>
+            <li><a href="regulamin.html" style="color: var(--primary-blue);">Regulamin</a></li>
+            <li><a href="index.html#zapisy" class="nav-cta">Darmowy Trening</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-        <a href="index.html" class="back-link">← Powrót</a>
-    </nav>
+    </div>
+</nav>
 
+<div class="site-wrapper">
     <div class="content-container">
         <article class="glass-document">
             <h1>Regulamin</h1>
@@ -195,7 +264,6 @@
                     <li>Trenowania w stroju właściwym dla Akademii,</li>
                     <li>Bezzwłocznego zgłaszania trenerowi wszelkich dolegliwości zdrowotnych,</li>
                     <li>Reprezentowania Akademii w zawodach sportowych w przypadku powołania.</li>
-                    <li>Dbałości o koleżeńską atmosferę w zespole.</li>
                 </ul>
             </div>
 
@@ -232,10 +300,27 @@
         </article>
     </div>
 
-    <footer style="text-align: center; opacity: 0.5; font-size: 0.8rem;">
+    <footer style="text-align: center; opacity: 0.5; font-size: 0.8rem; padding-top: 40px;">
         &copy; 2026 AP JŁ Wawer - Regulamin obowiązujący
     </footer>
 </div>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+</script>
 
 </body>
 </html>
