@@ -30,7 +30,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- PŁYWAJĄCY PRZYCISK FB --- */
+        /* --- PŁYWAJĄCY PRZYCISK FB (POPRAWIONY) --- */
         .fb-float {
             position: fixed;
             bottom: 30px;
@@ -92,7 +92,7 @@
             100% { transform: scale(1.15); }
         }
 
-        /* --- NOWOCZESNE SZKLANE MENU (FIXED) --- */
+        /* --- MENU --- */
         .main-navbar {
             position: fixed;
             top: 0;
@@ -165,12 +165,8 @@
             transition: 0.3s;
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 60px 5% 50px;
-            text-align: center;
-        }
-
+        /* Sekcje */
+        .hero { padding: 60px 5% 50px; text-align: center; }
         .hero-glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
@@ -183,14 +179,7 @@
             box-shadow: 0 25px 50px rgba(0,0,0,0.5);
         }
 
-        h1 {
-            font-size: 3.2rem;
-            font-weight: 900;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            line-height: 1.1;
-        }
-
+        h1 { font-size: 3.2rem; font-weight: 900; margin-bottom: 20px; text-transform: uppercase; line-height: 1.1; }
         h1 span { color: var(--accent-brand); }
 
         .cta-button {
@@ -310,12 +299,8 @@
             transition: 0.3s;
         }
 
-        .dot.active {
-            background: var(--accent-brand);
-            transform: scale(1.2);
-        }
+        .dot.active { background: var(--accent-brand); transform: scale(1.2); }
 
-        .expert-section { display: flex; justify-content: center; }
         .expert-card {
             background: rgba(47, 159, 230, 0.15);
             backdrop-filter: blur(15px);
@@ -323,6 +308,7 @@
             padding: 40px;
             border-radius: 15px;
             max-width: 800px;
+            margin: 0 auto;
         }
 
         .testimonial-item {
@@ -343,14 +329,8 @@
         }
 
         @media (max-width: 900px) {
-            .fb-float {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-            }
+            .fb-float { bottom: 20px; right: 20px; width: 50px; height: 50px; }
             .fb-float span { font-size: 26px; }
-
             .hamburger { display: flex; }
             .nav-menu {
                 position: fixed;
@@ -364,7 +344,6 @@
                 justify-content: center;
                 transition: 0.5s ease;
                 gap: 40px;
-                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
             }
             .nav-menu.active { right: 0; }
             .nav-menu a { font-size: 1.4rem; }
@@ -373,14 +352,13 @@
             .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
             h1 { font-size: 2.2rem; }
             .nav-btn { display: none; } 
-            .gallery-container { padding: 10px; border-radius: 20px; }
             .gallery-item img { max-height: 300px; }
         }
     </style>
 </head>
 <body>
 
-<a href="https://www.facebook.com/AkademiaWawer" target="_blank" class="fb-float" title="Odwiedź nas na Facebooku">
+<a href="https://www.facebook.com/profile.php?id=100057134371999" target="_blank" class="fb-float" title="Odwiedź nas na Facebooku">
     <span>f</span>
 </a>
 
@@ -409,9 +387,9 @@
         <div class="hero-glass-card">
             <h1>Akademia Piłkarska<br><span>JŁ Wawer</span></h1>
             <p>Najmłodsi mistrzowie w Wawrze trenują z nami! Od 2011 roku budujemy pasję, radość i piłkarskie charaktery.</p>
-            <br><br><br>
+            <br><br>
             <a href="#zapisy" class="cta-button">ODBIERZ DARMOWY TRENING!</a>
-            <br><br><br><br>
+            <br><br>
             <img src="certyfikat.png" alt="Zielony Certyfikat PZPN" class="cert-badge" style="width: 120px; margin-top: 20px;">
         </div>
     </header>
@@ -496,8 +474,8 @@
         <div class="hero-glass-card" style="margin-bottom: 50px;">
             <h2>Widzimy się na treningu!</h2>
             <p>Skorzystaj z szansy i podaruj dziecku niezapomniane sportowe wrażenia.</p>
-            <p><strong>Zadzwoń: +48 602 281 550</strong> lub odwiedź nas w Wawrze!</p>
-            <br><br><br>
+            <p><strong>Zadzwoń: +48 602 281 550</strong></p>
+            <br>
             <a href="tel:+48602281550" class="cta-button">ZADZWOŃ I REZERWUJ</a>
         </div>
     </section>
@@ -545,8 +523,7 @@
         updateGallery();
     }
 
-    const slideSpeed = window.innerWidth < 900 ? 2000 : 5000;
-    setInterval(() => { moveSlide(1); }, slideSpeed);
+    setInterval(() => { moveSlide(1); }, 5000);
 </script>
 
 </body>
