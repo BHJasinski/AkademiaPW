@@ -25,25 +25,22 @@
         }
 
         .site-wrapper {
-            position: relative;
-            min-height: 100vh;
-            width: 100%;
-            /* Tło z lekkim przyciemnieniem, by tabela była czytelna */
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), 
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
                         url('boisko.png') no-repeat center center fixed;
             background-size: cover;
+            min-height: 100vh;
             padding-top: calc(var(--nav-height) + 40px);
             padding-bottom: 50px;
         }
 
-        /* --- STYL MENU (Identyczny jak na pozostałych stronach) --- */
+        /* --- STYL MENU --- */
         .main-navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: var(--nav-height);
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass-border);
@@ -102,7 +99,8 @@
             border-radius: 3px;
         }
 
-        /* TREŚĆ - TABELA */
+        /* --- KONIEC MENU --- */
+
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -176,6 +174,7 @@
             align-items: center;
             gap: 8px;
             transition: 0.3s;
+            padding: 5px 0;
         }
 
         .map-link:hover { color: var(--friendly-green); transform: translateX(5px); }
@@ -188,7 +187,6 @@
             border-radius: 15px;
         }
 
-        /* MEDIA QUERIES */
         @media (max-width: 900px) {
             .hamburger { display: flex; }
             .nav-menu {
@@ -205,15 +203,12 @@
                 transition: 0.5s;
             }
             .nav-menu.active { right: 0; }
-            .nav-menu a { font-size: 1.5rem; }
-
-            /* Styl tabeli na mobile */
+            
             thead { display: none; }
             tr { display: block; margin-bottom: 25px; border-bottom: 2px solid var(--primary-blue); padding: 15px; border-radius: 15px; background: rgba(255,255,255,0.02); }
             td { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border: none; }
             td::before { content: attr(data-label); font-weight: 700; color: var(--primary-blue); text-transform: uppercase; font-size: 0.7rem; }
             .map-link { text-align: right; justify-content: flex-end; }
-            h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -259,43 +254,76 @@
                         <td data-label="Rocznik"><span class="rocznik-badge">2013/14</span></td>
                         <td data-label="Dzień" class="day-highlight">Poniedziałek</td>
                         <td data-label="Godzina">16:30</td>
-                        <td data-label="Miejsce"><a href="https://maps.google.com" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
                     </tr>
                     <tr>
                         <td data-label="Rocznik"><span class="rocznik-badge">2013/14</span></td>
                         <td data-label="Dzień" class="day-highlight">Środa</td>
                         <td data-label="Godzina">17:00</td>
-                        <td data-label="Miejsce"><a href="https://maps.google.com" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
                     </tr>
                     <tr>
                         <td data-label="Rocznik"><span class="rocznik-badge">2013/14</span></td>
                         <td data-label="Dzień" class="day-highlight">Piątek</td>
                         <td data-label="Godzina">16:45</td>
-                        <td data-label="Miejsce"><a href="https://maps.google.com" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
                     </tr>
+                    <tr>
+                        <td data-label="Rocznik"><span class="rocznik-badge">2013/14</span></td>
+                        <td data-label="Dzień" class="day-highlight">---</td>
+                        <td data-label="Godzina">---</td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/LuKDBXmBMZ9Z9cp18" target="_blank" class="map-link">🏢 Hala Bartoszycka</a></td>
+                    </tr>
+
                     <tr>
                         <td data-label="Rocznik"><span class="rocznik-badge">2015/16</span></td>
                         <td data-label="Dzień" class="day-highlight">Poniedziałek</td>
                         <td data-label="Godzina">17:30</td>
-                        <td data-label="Miejsce"><a href="https://maps.google.com" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
                     </tr>
                     <tr>
                         <td data-label="Rocznik"><span class="rocznik-badge">2015/16</span></td>
                         <td data-label="Dzień" class="day-highlight">Środa</td>
                         <td data-label="Godzina">17:30</td>
-                        <td data-label="Miejsce"><a href="https://maps.google.com" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
                     </tr>
+                    <tr>
+                        <td data-label="Rocznik"><span class="rocznik-badge">2015/16</span></td>
+                        <td data-label="Dzień" class="day-highlight">---</td>
+                        <td data-label="Godzina">---</td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/LuKDBXmBMZ9Z9cp18" target="_blank" class="map-link">🏢 Hala Bartoszycka</a></td>
+                    </tr>
+
                     <tr>
                         <td data-label="Rocznik"><span class="rocznik-badge">2017</span></td>
                         <td data-label="Dzień" class="day-highlight">Poniedziałek</td>
                         <td data-label="Godzina">17:30</td>
-                        <td data-label="Miejsce"><a href="https://maps.google.com" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Rocznik"><span class="rocznik-badge">2017</span></td>
+                        <td data-label="Dzień" class="day-highlight">Środa</td>
+                        <td data-label="Godzina">17:30</td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Rocznik"><span class="rocznik-badge">2017</span></td>
+                        <td data-label="Dzień" class="day-highlight">Czwartek</td>
+                        <td data-label="Godzina">17:00</td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/LuKDBXmBMZ9Z9cp18" target="_blank" class="map-link">🏢 Hala Bartoszycka</a></td>
+                    </tr>
+
+                    <tr>
+                        <td data-label="Rocznik"><span class="rocznik-badge">2018/19+</span></td>
+                        <td data-label="Dzień" class="day-highlight">Poniedziałek</td>
+                        <td data-label="Godzina">17:30</td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/aTVP42YY9XbeurqM7" target="_blank" class="map-link">📍 Boisko / Orlik</a></td>
                     </tr>
                     <tr>
                         <td data-label="Rocznik"><span class="rocznik-badge">2018/19+</span></td>
                         <td data-label="Dzień" class="day-highlight">Środa</td>
                         <td data-label="Godzina">17:30</td>
-                        <td data-label="Miejsce"><a href="https://maps.google.com" target="_blank" class="map-link">🏢 Hala Bartoszycka</a></td>
+                        <td data-label="Miejsce"><a href="https://maps.app.goo.gl/LuKDBXmBMZ9Z9cp18" target="_blank" class="map-link">🏢 Hala Bartoszycka</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -312,20 +340,12 @@
 </div>
 
 <script>
-    // LOGIKA MENU MOBILNEGO
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
 
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
-    });
-
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
     });
 </script>
 
