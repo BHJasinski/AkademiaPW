@@ -12,6 +12,7 @@
             --friendly-green: #2ecc71; 
             --glass-bg: rgba(255, 255, 255, 0.12);
             --glass-border: rgba(255, 255, 255, 0.2);
+            --nav-height: 80px; /* Stała wysokość menu */
         }
 
         * {
@@ -35,6 +36,8 @@
             min-height: 100vh;
             width: 100%;
             overflow: hidden;
+            /* WAŻNE: Odsuwamy treść od samej góry, bo menu jest "przyklejone" */
+            padding-top: var(--nav-height);
         }
 
         .site-wrapper::before {
@@ -58,38 +61,84 @@
             100% { transform: scale(1.15); }
         }
 
-        /* Szklana Nawigacja */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background: rgba(0, 0, 0, 0.2);
+        /* --- NOWOCZESNE SZKLANE MENU (FIXED) --- */
+        .main-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass-border);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            z-index: 9999;
+            transition: all 0.3s ease;
         }
 
-        .logo-container img { height: 70px; }
+        .nav-container {
+            max-width: 1200px;
+            height: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+        }
 
-        .nav-links a {
+        .nav-logo img {
+            height: 55px;
+            transition: transform 0.3s ease;
+        }
+
+        /* MENU DESKTOPOWE */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-menu a {
             color: white;
             text-decoration: none;
-            margin-left: 25px;
             font-weight: 700;
             text-transform: uppercase;
             font-size: 0.85rem;
+            letter-spacing: 1px;
             transition: 0.3s;
         }
 
-        .nav-links a:hover { color: var(--accent-brand); }
+        .nav-menu a:hover { color: var(--accent-brand); }
+
+        .nav-cta {
+            background: var(--friendly-green);
+            padding: 12px 25px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        /* PRZYCISK HAMBURGER (Tylko Mobile) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 10001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
 
         /* Hero Section */
         .hero {
-            padding: 80px 5% 50px;
+            padding: 60px 5% 50px;
             text-align: center;
         }
 
@@ -124,7 +173,7 @@
             font-weight: 900;
             font-size: 1.1rem;
             display: inline-block;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
             box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
             text-transform: uppercase;
         }
@@ -169,7 +218,7 @@
             text-align: center;
         }
 
-        /* GALERIA - POPRAWKI STABILNOŚCI I MOBILNOŚCI */
+        /* GALERIA */
         .gallery-container {
             position: relative;
             max-width: 1000px;
@@ -179,7 +228,7 @@
             border: 1px solid var(--glass-border);
             padding: 20px;
             border-radius: 30px;
-            overflow: hidden; /* Gwarantuje stabilność strony */
+            overflow: hidden;
         }
 
         .gallery-slider {
@@ -267,36 +316,59 @@
         }
 
         /* MEDIA QUERIES - OPTYMALIZACJA MOBILNA */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
+            .hamburger { display: flex; }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                transition: 0.5s ease;
+                gap: 40px;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            }
+
+            .nav-menu.active { right: 0; }
+
+            .nav-menu a { font-size: 1.4rem; }
+
+            .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
             h1 { font-size: 2.2rem; }
-            .nav-links { display: none; }
-            .hero-glass-card { padding: 30px 20px; }
-            
-            /* Ukrywamy przyciski na mobile, by galeria była czysta */
             .nav-btn { display: none; } 
-            
-            .gallery-container {
-                padding: 10px; /* Mniejsze paddingi na komórce */
-                border-radius: 20px;
-            }
-            .gallery-item img {
-                max-height: 300px; /* Niższe zdjęcia na telefonie */
-            }
+            .gallery-container { padding: 10px; border-radius: 20px; }
+            .gallery-item img { max-height: 300px; }
         }
     </style>
 </head>
 <body>
 
 <div class="site-wrapper">
-    <nav>
-        <div class="logo-container">
-            <img src="logo.png" alt="AP JŁ Wawer">
-        </div>
-        <div class="nav-links">
-            <a href="#proces">Jak zacząć?</a>
-            <a href="#atuty">Dlaczego my?</a>
-            <a href="#o-nas">Eksperci</a>
-            <a href="#zapisy" style="color: var(--friendly-green);">Darmowy Trening</a>
+    <nav class="main-navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="AP JŁ Wawer">
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html">Start</a></li>
+                <li><a href="trenerzy.html">Kadra</a></li>
+                <li><a href="terminarz.html">Terminarz</a></li>
+                <li><a href="regulamin.html">Regulamin</a></li>
+                <li><a href="#zapisy" class="nav-cta">Darmowy Trening</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
@@ -353,7 +425,6 @@
         <div class="gallery-container">
             <button class="nav-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
             <button class="nav-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
-            
             <div class="gallery-slider" id="slider">
                 <div class="gallery-item"><img src="galeria 1.png" alt="Trening 1"></div>
                 <div class="gallery-item"><img src="galeria 2.png" alt="Trening 2"></div>
@@ -361,7 +432,6 @@
                 <div class="gallery-item"><img src="galeria 4.png" alt="Trening 4"></div>
                 <div class="gallery-item"><img src="galeria 5.png" alt="Trening 5"></div>
             </div>
-
             <div class="gallery-dots">
                 <span class="dot active" onclick="currentSlide(0)"></span>
                 <span class="dot" onclick="currentSlide(1)"></span>
@@ -405,6 +475,23 @@
 </div>
 
 <script>
+    // LOGIKA MENU MOBILNEGO
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // LOGIKA GALERII
     let currentIdx = 0;
     const slider = document.getElementById('slider');
     const dots = document.querySelectorAll('.dot');
@@ -427,13 +514,8 @@
         updateGallery();
     }
 
-    // AUTOMATYCZNE PRZEWIJANIE
-    // Na komputerach (szeroki ekran) co 5 sekund, na komórkach co 2 sekundy
-    const slideSpeed = window.innerWidth < 768 ? 2000 : 5000;
-    
-    setInterval(() => {
-        moveSlide(1);
-    }, slideSpeed);
+    const slideSpeed = window.innerWidth < 900 ? 2000 : 5000;
+    setInterval(() => { moveSlide(1); }, slideSpeed);
 </script>
 
 </body>
