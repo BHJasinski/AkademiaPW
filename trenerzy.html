@@ -12,6 +12,7 @@
             --friendly-green: #2ecc71; 
             --glass-bg: rgba(255, 255, 255, 0.1);
             --glass-border: rgba(255, 255, 255, 0.2);
+            --nav-height: 80px;
         }
 
         * {
@@ -28,7 +29,7 @@
             overflow-x: hidden;
         }
 
-        /* Tło identyczne jak na stronie głównej */
+        /* Tło identyczne jak na głównej */
         .site-wrapper {
             position: relative;
             min-height: 100vh;
@@ -37,6 +38,8 @@
             flex-direction: column;
             align-items: center;
             padding: 40px 5%;
+            /* WAŻNE: Odstęp od menu */
+            padding-top: calc(var(--nav-height) + 40px);
         }
 
         .site-wrapper::before {
@@ -53,6 +56,73 @@
             z-index: -1;
         }
 
+        /* --- STYL MENU (Identyczny jak na głównej) --- */
+        .main-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 9999;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            height: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+        }
+
+        .nav-logo img { height: 50px; }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .nav-menu a:hover { color: var(--accent-brand); }
+
+        .nav-cta {
+            background: var(--friendly-green);
+            padding: 10px 20px;
+            border-radius: 50px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 10001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+        }
+
+        /* NAGŁÓWEK */
         h1 {
             text-transform: uppercase;
             font-weight: 900;
@@ -64,7 +134,7 @@
 
         h1 span { color: var(--primary-blue); }
 
-        /* KONTENER TRENERÓW (Gry komputerowe Style) */
+        /* KARTY TRENERÓW */
         .coaches-row {
             display: flex;
             justify-content: center;
@@ -72,6 +142,7 @@
             width: 100%;
             max-width: 1100px;
             margin-bottom: 40px;
+            flex-wrap: wrap; /* Pozwala kartom przeskoczyć niżej na mobile */
         }
 
         .coach-card {
@@ -87,29 +158,25 @@
             backdrop-filter: blur(10px);
         }
 
-        /* Postać trenera */
         .coach-card img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* PNG bez tła będzie wyglądać świetnie */
-            transition: transform 0.4s ease, filter 0.4s ease;
+            object-fit: contain;
+            transition: 0.4s ease;
             filter: grayscale(100%) brightness(0.7);
         }
 
-        /* Efekt Hover - Podświetlenie jak w grze */
-        .coach-card:hover {
-            transform: translateY(-15px) scale(1.05);
+        .coach-card:hover, .coach-card.active-card {
+            transform: translateY(-15px);
             border-color: var(--primary-blue);
             box-shadow: 0 0 30px rgba(47, 159, 230, 0.4);
             background: rgba(47, 159, 230, 0.1);
         }
 
-        .coach-card:hover img {
+        .coach-card:hover img, .coach-card.active-card img {
             filter: grayscale(0%) brightness(1.1);
-            transform: scale(1.1);
         }
 
-        /* Podpis na karcie */
         .coach-name-tag {
             position: absolute;
             bottom: 0;
@@ -122,7 +189,7 @@
             font-size: 0.9rem;
         }
 
-        /* PANEL OPISU NA DOLE */
+        /* PANEL OPISU */
         .description-panel {
             width: 100%;
             max-width: 900px;
@@ -134,14 +201,7 @@
             min-height: 150px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            opacity: 0;
-            transform: translateY(20px);
             transition: all 0.5s ease;
-        }
-
-        .description-panel.active {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .description-panel h3 {
@@ -157,45 +217,67 @@
             line-height: 1.6;
         }
 
-        .back-link {
-            margin-top: 40px;
-            color: white;
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            border-bottom: 2px solid var(--primary-blue);
-            transition: 0.3s;
-        }
-
-        .back-link:hover { color: var(--primary-blue); }
-
-        /* Mobilność */
+        /* MOBILNOŚĆ */
         @media (max-width: 900px) {
-            .coaches-row { flex-direction: column; align-items: center; }
-            .coach-card { width: 100%; max-width: 300px; height: 350px; }
+            .hamburger { display: flex; }
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 30px;
+                transition: 0.5s;
+            }
+            .nav-menu.active { right: 0; }
+            .nav-menu a { font-size: 1.5rem; }
+
+            .coach-card { width: 100%; max-width: 280px; height: 350px; }
+            h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
+<nav class="main-navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <img src="logo.png" alt="AP JŁ Wawer">
+        </a>
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="index.html">Start</a></li>
+            <li><a href="trenerzy.html" style="color: var(--primary-blue);">Kadra</a></li>
+            <li><a href="terminarz.html">Terminarz</a></li>
+            <li><a href="regulamin.html">Regulamin</a></li>
+            <li><a href="index.html#zapisy" class="nav-cta">Darmowy Trening</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
 <div class="site-wrapper">
-    <a href="index.html" class="back-link">← Wróć do strony głównej</a>
-    
     <h1>Poznaj Naszych <span>Ekspertów</span></h1>
 
     <div class="coaches-row">
-        <div class="coach-card" onmouseover="showDesc('trener1')" onmouseout="hideDesc()">
+        <div class="coach-card" onclick="showDesc('trener1', this)">
             <img src="trener 1.png" alt="Trener 1">
             <div class="coach-name-tag">Trener Jan Kowalski</div>
         </div>
 
-        <div class="coach-card" onmouseover="showDesc('trener2')" onmouseout="hideDesc()">
+        <div class="coach-card" onclick="showDesc('trener2', this)">
             <img src="trener 2.png" alt="Trener 2">
             <div class="coach-name-tag">Trener Adam Nowak</div>
         </div>
 
-        <div class="coach-card" onmouseover="showDesc('trener3')" onmouseout="hideDesc()">
+        <div class="coach-card" onclick="showDesc('trener3', this)">
             <img src="trener 3.png" alt="Trener 3">
             <div class="coach-name-tag">Trener Piotr Wiśnik</div>
         </div>
@@ -203,12 +285,21 @@
 
     <div class="description-panel" id="desc-panel">
         <h3 id="coach-title">Wybierz trenera</h3>
-        <p id="coach-text">Najedź kursorem na postać, aby zobaczyć doświadczenie i specjalizację naszych szkoleniowców.</p>
+        <p id="coach-text">Kliknij w postać, aby zobaczyć doświadczenie i specjalizację naszych szkoleniowców.</p>
     </div>
-
 </div>
 
 <script>
+    // LOGIKA MENU
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // LOGIKA OPISÓW TRENERÓW
     const data = {
         trener1: {
             name: "Jan Kowalski",
@@ -228,15 +319,20 @@
     const title = document.getElementById('coach-title');
     const text = document.getElementById('coach-text');
 
-    function showDesc(id) {
-        panel.classList.add('active');
+    function showDesc(id, element) {
+        // Usuń podświetlenie ze wszystkich kart
+        document.querySelectorAll('.coach-card').forEach(card => card.classList.remove('active-card'));
+        // Dodaj podświetlenie do klikniętej karty
+        element.classList.add('active-card');
+        
+        // Zaktualizuj opis
         title.innerText = data[id].name;
         text.innerText = data[id].text;
-    }
-
-    function hideDesc() {
-        // Opcjonalnie: możesz zostawić opis ostatnio wybranego trenera
-        // panel.classList.remove('active'); 
+        
+        // Przewiń płynnie do opisu na mobile
+        if(window.innerWidth < 900) {
+            panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
     }
 </script>
 
