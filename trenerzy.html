@@ -29,7 +29,37 @@
             overflow-x: hidden;
         }
 
-        /* Tło identyczne jak na głównej */
+        /* --- PŁYWAJĄCY PRZYCISK FB --- */
+        .fb-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #1877f2;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            z-index: 10000;
+            box-shadow: 0 10px 25px rgba(24, 119, 242, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .fb-float:hover {
+            transform: scale(1.15) rotate(10deg);
+        }
+
+        .fb-float span {
+            color: white;
+            font-size: 32px;
+            font-weight: 900;
+            font-family: Arial, sans-serif;
+            margin-top: 4px;
+        }
+
         .site-wrapper {
             position: relative;
             min-height: 100vh;
@@ -38,7 +68,6 @@
             flex-direction: column;
             align-items: center;
             padding: 40px 5%;
-            /* WAŻNE: Odstęp od menu */
             padding-top: calc(var(--nav-height) + 40px);
         }
 
@@ -56,7 +85,6 @@
             z-index: -1;
         }
 
-        /* --- STYL MENU (Identyczny jak na głównej) --- */
         .main-navbar {
             position: fixed;
             top: 0;
@@ -122,7 +150,6 @@
             border-radius: 3px;
         }
 
-        /* NAGŁÓWEK */
         h1 {
             text-transform: uppercase;
             font-weight: 900;
@@ -134,21 +161,20 @@
 
         h1 span { color: var(--primary-blue); }
 
-        /* KARTY TRENERÓW */
         .coaches-row {
             display: flex;
             justify-content: center;
             gap: 30px;
             width: 100%;
-            max-width: 1100px;
+            max-width: 1200px;
             margin-bottom: 40px;
-            flex-wrap: wrap; /* Pozwala kartom przeskoczyć niżej na mobile */
+            flex-wrap: wrap;
         }
 
         .coach-card {
             position: relative;
-            width: 280px;
-            height: 400px;
+            width: 250px;
+            height: 380px;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
@@ -186,10 +212,9 @@
             text-align: center;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
-        /* PANEL OPISU */
         .description-panel {
             width: 100%;
             max-width: 900px;
@@ -217,7 +242,6 @@
             line-height: 1.6;
         }
 
-        /* MOBILNOŚĆ */
         @media (max-width: 900px) {
             .hamburger { display: flex; }
             .nav-menu {
@@ -234,14 +258,21 @@
                 transition: 0.5s;
             }
             .nav-menu.active { right: 0; }
-            .nav-menu a { font-size: 1.5rem; }
-
-            .coach-card { width: 100%; max-width: 280px; height: 350px; }
+            .coach-card { width: 45%; height: 300px; }
             h1 { font-size: 1.8rem; }
+            .fb-float { bottom: 20px; right: 20px; width: 50px; height: 50px; }
+        }
+
+        @media (max-width: 500px) {
+            .coach-card { width: 100%; max-width: 280px; }
         }
     </style>
 </head>
 <body>
+
+<a href="https://www.facebook.com/profile.php?id=100057134371999" target="_blank" class="fb-float" title="Odwiedź nas na Facebooku">
+    <span>f</span>
+</a>
 
 <nav class="main-navbar">
     <div class="nav-container">
@@ -268,18 +299,23 @@
 
     <div class="coaches-row">
         <div class="coach-card" onclick="showDesc('trener1', this)">
-            <img src="trener 1.png" alt="Trener 1">
+            <img src="trener 1.png" alt="Marek Bączkowski">
             <div class="coach-name-tag">Trener Marek Bączkowski</div>
         </div>
 
         <div class="coach-card" onclick="showDesc('trener2', this)">
-            <img src="trener 2.png" alt="Trener 2">
+            <img src="trener 2.png" alt="Janusz Łagiewnicki">
             <div class="coach-name-tag">Trener Janusz Łagiewnicki</div>
         </div>
 
         <div class="coach-card" onclick="showDesc('trener3', this)">
-            <img src="trener 3.png" alt="Trener 3">
+            <img src="trener 3.png" alt="Damian Olszewski">
             <div class="coach-name-tag">Trener Damian Olszewski</div>
+        </div>
+
+        <div class="coach-card" onclick="showDesc('trener4', this)">
+            <img src="trener 4.png" alt="Trener 4">
+            <div class="coach-name-tag">Trener Mateusz Kostrzewa</div>
         </div>
     </div>
 
@@ -290,7 +326,6 @@
 </div>
 
 <script>
-    // LOGIKA MENU
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
 
@@ -299,19 +334,22 @@
         navMenu.classList.toggle('active');
     });
 
-    // LOGIKA OPISÓW TRENERÓW
     const data = {
         trener1: {
             name: "Marek Bączkowski",
-            text: "Trener UEFA C"
+            text: "Trener UEFA C. Specjalista od szkolenia początkowego, który potrafi zaszczepić pasję do piłki u najmłodszych adeptów."
         },
         trener2: {
             name: "Janusz Łagiewnicki",
-            text: "Trenera UEFA A, Prezes Akademii"
+            text: "Trener UEFA A, Prezes Akademii. Wieloletnie doświadczenie w prowadzeniu zespołów młodzieżowych i seniorskich."
         },
         trener3: {
             name: "Damian Olszewski",
-            text: "Trener UEFA B"
+            text: "Trener UEFA B. Koncentruje się na rozwoju techniki indywidualnej oraz przygotowaniu motorycznym zawodników."
+        },
+        trener4: {
+            name: "dr Piotr Wiśnik",
+            text: "Doktor fizjologii sportu, trener klasy mistrzowskiej w piłce nożnej."
         }
     };
 
@@ -320,16 +358,12 @@
     const text = document.getElementById('coach-text');
 
     function showDesc(id, element) {
-        // Usuń podświetlenie ze wszystkich kart
         document.querySelectorAll('.coach-card').forEach(card => card.classList.remove('active-card'));
-        // Dodaj podświetlenie do klikniętej karty
         element.classList.add('active-card');
         
-        // Zaktualizuj opis
         title.innerText = data[id].name;
         text.innerText = data[id].text;
         
-        // Przewiń płynnie do opisu na mobile
         if(window.innerWidth < 900) {
             panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
