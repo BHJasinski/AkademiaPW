@@ -34,7 +34,7 @@
             position: relative;
             min-height: 100vh;
             width: 100%;
-            overflow: hidden; /* Ważne przy animacji powiększania */
+            overflow: hidden;
         }
 
         .site-wrapper::before {
@@ -44,27 +44,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* Gradient nakładany na zdjęcie dla czytelności tekstu */
             background: linear-gradient(rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%), 
                         url('boisko.png') no-repeat center center;
             background-size: cover;
-            
-            /* SOCZYSTOŚĆ: Zwiększamy nasycenie i kontrast */
             filter: saturate(1.5) contrast(1.1) brightness(0.9);
-            
-            /* ANIMACJA: Efekt Ken Burns */
             animation: kenBurns 20s infinite alternate ease-in-out;
             z-index: -1;
             transform-origin: center;
         }
 
         @keyframes kenBurns {
-            0% {
-                transform: scale(1.0);
-            }
-            100% {
-                transform: scale(1.15); /* Delikatne powiększenie */
-            }
+            0% { transform: scale(1.0); }
+            100% { transform: scale(1.15); }
         }
 
         /* Szklana Nawigacja */
@@ -144,8 +135,8 @@
             filter: brightness(1.1);
         }
 
-        /* Sekcje */
-        .how-to-start, .features, .testimonials, .expert-section {
+        /* Sekcje Ogólne */
+        .how-to-start, .features, .testimonials, .expert-section, .gallery-section {
             padding: 60px 5%;
             position: relative;
             z-index: 1;
@@ -167,8 +158,6 @@
             border: 1px solid var(--glass-border);
             transition: 0.3s;
         }
-
-        .step-card:hover { border-color: var(--friendly-green); }
 
         .step-card h3 { color: var(--friendly-green); margin-bottom: 10px; }
 
@@ -199,11 +188,94 @@
             text-transform: uppercase;
         }
 
-        .expert-section {
-            display: flex;
-            justify-content: center;
+        /* STYL GALERII SZKLANEJ */
+        .gallery-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            overflow: hidden;
         }
 
+        .gallery-slider {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.45, 0, 0.55, 1);
+        }
+
+        .gallery-item {
+            min-width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--accent-brand);
+            border-color: var(--accent-brand);
+        }
+
+        .prev-btn { left: 30px; }
+        .next-btn { right: 30px; }
+
+        .gallery-dots {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .dot.active {
+            background: var(--accent-brand);
+            box-shadow: 0 0 10px var(--accent-brand);
+            transform: scale(1.2);
+        }
+
+        /* Eksperci i opinie */
+        .expert-section { display: flex; justify-content: center; }
         .expert-card {
             background: rgba(47, 159, 230, 0.15);
             backdrop-filter: blur(15px);
@@ -236,6 +308,7 @@
             h1 { font-size: 2.2rem; }
             .nav-links { display: none; }
             .hero-glass-card { padding: 30px 20px; }
+            .nav-btn { width: 40px; height: 40px; font-size: 16px; }
         }
     </style>
 </head>
@@ -258,9 +331,9 @@
         <div class="hero-glass-card">
             <h1>Akademia Piłkarska<br><span>JŁ Wawer</span></h1>
             <p>Najmłodsi mistrzowie w Wawrze trenują z nami! Od 2011 roku budujemy pasję, radość i piłkarskie charaktery.</p>
-            <br>
-            <a href="#zapisy" class="cta-button">ODBIERZ DARMOWY TRENING!</a>
             <br><br>
+            <a href="#zapisy" class="cta-button">ODBIERZ DARMOWY TRENING!</a>
+            <br><br><br>
             <img src="certyfikat.png" alt="Zielony Certyfikat PZPN" class="cert-badge">
         </div>
     </header>
@@ -302,6 +375,30 @@
         </div>
     </section>
 
+    <section class="gallery-section">
+        <h2>Nasza Akademia w obiektywie</h2>
+        <div class="gallery-container">
+            <button class="nav-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="nav-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+            
+            <div class="gallery-slider" id="slider">
+                <div class="gallery-item"><img src="galeria 1.png" alt="Trening 1"></div>
+                <div class="gallery-item"><img src="galeria 2.png" alt="Trening 2"></div>
+                <div class="gallery-item"><img src="galeria 3.png" alt="Trening 3"></div>
+                <div class="gallery-item"><img src="galeria 4.png" alt="Trening 4"></div>
+                <div class="gallery-item"><img src="galeria 5.png" alt="Trening 5"></div>
+            </div>
+
+            <div class="gallery-dots">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+            </div>
+        </div>
+    </section>
+
     <section class="expert-section" id="o-nas">
         <div class="expert-card">
             <h2 style="text-align: left; margin-bottom: 20px;">Naukowe Podejście do Sportu</h2>
@@ -324,7 +421,7 @@
             <h2>Widzimy się na treningu!</h2>
             <p>Skorzystaj z szansy i podaruj dziecku niezapomniane sportowe wrażenia.</p>
             <p><strong>Zadzwoń: +48 602 281 550</strong> lub odwiedź nas w Wawrze!</p>
-            <br>
+            <br><br>
             <a href="tel:+48602281550" class="cta-button">ZADZWOŃ I REZERWUJ</a>
         </div>
     </section>
@@ -333,6 +430,33 @@
         &copy; 2026 Akademia Piłkarska JŁ Wawer. Projekt strony: Ekspert HTML/Modern Web.
     </footer>
 </div>
+
+<script>
+    let currentIdx = 0;
+    const slider = document.getElementById('slider');
+    const dots = document.querySelectorAll('.dot');
+    const totalSlides = 5;
+
+    function updateGallery() {
+        slider.style.transform = `translateX(-${currentIdx * 100}%)`;
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIdx);
+        });
+    }
+
+    function moveSlide(direction) {
+        currentIdx = (currentIdx + direction + totalSlides) % totalSlides;
+        updateGallery();
+    }
+
+    function currentSlide(index) {
+        currentIdx = index;
+        updateGallery();
+    }
+
+    // Automatyczne przewijanie co 5 sekund
+    setInterval(() => moveSlide(1), 5000);
+</script>
 
 </body>
 </html>
