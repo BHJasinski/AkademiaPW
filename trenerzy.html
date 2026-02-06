@@ -43,9 +43,8 @@
             font-size: 2.2rem;
             margin-bottom: 40px;
             text-align: center;
-            letter-spacing: 1px;
         }
-        h1 span { color: var(--primary-blue); text-shadow: 0 0 10px rgba(47, 159, 230, 0.3); }
+        h1 span { color: var(--primary-blue); }
 
         /* --- GRID TRENERÓW --- */
         .coaches-grid {
@@ -57,107 +56,98 @@
         }
 
         .coach-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
             border: 2px solid var(--glass-border);
             border-radius: 20px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.4s ease-out;
             cursor: pointer;
-            position: relative;
         }
 
-        /* Kontener obrazu */
+        /* KLUCZOWA ZMIANA: Kontener zdjęcia bez obcinania głowy */
         .coach-img-box {
             width: 100%;
-            aspect-ratio: 1/1.2;
-            overflow: hidden;
+            height: 450px; /* Zwiększona wysokość okna */
             background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 10px; /* Oddech od górnej krawędzi */
         }
 
         .coach-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            /* POCZĄTKOWY STAN: Trochę koloru, lekko przyciemniony */
-            filter: grayscale(0.5) brightness(0.8) contrast(0.9);
-            transition: 0.5s ease;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* GWARANCJA: Nie obcina głowy, widać całą postać */
+            filter: grayscale(0.4) brightness(0.7); /* Lekki kolor na start */
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* Panel z opisem pod zdjęciem */
         .coach-info {
-            padding: 18px;
-            background: rgba(0, 0, 0, 0.8);
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            border-top: 2px solid transparent;
-            transition: 0.4s;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.85);
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+            min-height: 150px;
         }
 
         .coach-info h3 {
-            font-size: 1rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
             color: #ccc;
+            margin-bottom: 10px;
             transition: 0.3s;
         }
 
         .coach-info p {
             font-size: 0.85rem;
             line-height: 1.5;
-            color: #999;
+            color: #888;
             transition: 0.3s;
         }
 
-        /* --- EFEKTY AKTYWACJI (Gdy wybrany lub najechany) --- */
+        /* --- EFEKTY WYBORU --- */
         .coach-card:hover, .coach-card.active {
             border-color: var(--primary-blue);
-            box-shadow: 0 0 40px rgba(47, 159, 230, 0.5);
-            transform: translateY(-8px);
-            background: rgba(47, 159, 230, 0.15);
+            box-shadow: 0 0 40px rgba(47, 159, 230, 0.6);
+            transform: translateY(-10px);
+            background: rgba(47, 159, 230, 0.1);
         }
 
-        /* Obraz nabiera PEŁNEGO KOLORU i JASNOŚCI */
+        /* Pełny kolor i jasność po wybraniu */
         .coach-card:hover img, .coach-card.active img {
             filter: grayscale(0) brightness(1.2) contrast(1.1);
-            transform: scale(1.05);
-        }
-
-        /* Tekst staje się wyraźny */
-        .coach-card:hover .coach-info, .coach-card.active .coach-info {
-            background: rgba(0, 0, 0, 0.9);
-            border-top: 2px solid var(--primary-blue);
+            transform: scale(1.08); /* Delikatne zbliżenie na postać */
         }
 
         .coach-card:hover .coach-info h3, .coach-card.active .coach-info h3 {
             color: var(--primary-blue);
-            letter-spacing: 1px;
         }
 
         .coach-card:hover .coach-info p, .coach-card.active .coach-info p {
-            color: #ffffff;
+            color: #fff;
         }
 
-        /* --- RESPONSYWNOŚĆ --- */
+        /* --- RESPONSYWNOŚĆ MOBILNA --- */
         @media (max-width: 900px) {
             .coaches-grid {
-                grid-template-columns: repeat(2, 1fr); /* Dwóch w linii */
+                grid-template-columns: repeat(2, 1fr); /* 2 w linii */
                 gap: 12px;
-                padding: 0 5px;
             }
-            h1 { font-size: 1.8rem; margin-bottom: 30px; }
-            .coach-info { padding: 12px; }
-            .coach-info h3 { font-size: 0.9rem; }
-            .coach-info p { font-size: 0.75rem; line-height: 1.3; }
+            .coach-img-box {
+                height: 300px; /* Mniejsze okno na telefon, ale wciąż contain */
+            }
+            h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
 <div class="site-wrapper">
-    <h1>Nasza <span>Kadra</span></h1>
+    <h1>Poznaj Naszych <span>Trenerów</span></h1>
 
     <div class="coaches-grid">
         <div class="coach-card" onclick="toggleActive(this)">
@@ -166,7 +156,7 @@
             </div>
             <div class="coach-info">
                 <h3>Marek Bączkowski</h3>
-                <p>Trener UEFA C. Specjalista od szkolenia początkowego, pasjonat pracy z dziećmi.</p>
+                <p>Trener UEFA C. Specjalista od szkolenia początkowego, pasjonat pracy z najmłodszymi adeptami piłki.</p>
             </div>
         </div>
 
@@ -176,7 +166,7 @@
             </div>
             <div class="coach-info">
                 <h3>Janusz Łagiewnicki</h3>
-                <p>Trener UEFA A, Prezes Akademii. Ponad 20 lat doświadczenia szkoleniowego.</p>
+                <p>Trener UEFA A, Prezes Akademii. Wieloletnie doświadczenie w szkoleniu młodzieży na najwyższym poziomie.</p>
             </div>
         </div>
 
@@ -186,17 +176,17 @@
             </div>
             <div class="coach-info">
                 <h3>Damian Olszewski</h3>
-                <p>Trener UEFA B. Ekspert od przygotowania motorycznego i techniki indywidualnej.</p>
+                <p>Trener UEFA B. Koncentruje się na rozwoju techniki indywidualnej i przygotowaniu motorycznym.</p>
             </div>
         </div>
 
         <div class="coach-card" onclick="toggleActive(this)">
             <div class="coach-img-box">
-                <img src="trener 4.png" alt="Piotr Wiśnik">
+                <img src="trener 4.png" alt="dr Piotr Wiśnik">
             </div>
             <div class="coach-info">
                 <h3>dr Piotr Wiśnik</h3>
-                <p>Doktor fizjologii sportu. Dba o zdrowie, dietę i wydolność naszych zawodników.</p>
+                <p>Doktor fizjologii sportu. Odpowiada za naukową stronę treningu, dietę i zdrowie zawodników.</p>
             </div>
         </div>
     </div>
@@ -206,7 +196,6 @@
     function toggleActive(card) {
         if (window.innerWidth < 900) {
             const isActive = card.classList.contains('active');
-            // Czyścimy inne karty, żeby tylko jedna była "wybrana" (kolorowa) na raz
             document.querySelectorAll('.coach-card').forEach(c => c.classList.remove('active'));
             if (!isActive) {
                 card.classList.add('active');
