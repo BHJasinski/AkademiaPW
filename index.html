@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -31,7 +30,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- PŁYWAJĄCY PRZYCISK FB (POPRAWIONY) --- */
+        /* --- PŁYWAJĄCY PRZYCISK FB --- */
         .fb-float {
             position: fixed;
             bottom: 30px;
@@ -259,71 +258,32 @@
 
         .kit-preview-img img:hover { transform: scale(1.05); }
 
-        /* GALERIA */
-        .gallery-container {
-            position: relative;
+        /* NOWY STYL POJEDYNCZEJ FOTKI */
+        .single-photo-container {
             max-width: 1000px;
             margin: 0 auto;
             background: var(--glass-bg);
             backdrop-filter: blur(15px);
             border: 1px solid var(--glass-border);
-            padding: 20px;
+            padding: 15px;
             border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             overflow: hidden;
+            transition: transform 0.4s ease;
         }
 
-        .gallery-slider {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.45, 0, 0.55, 1);
+        .single-photo-container:hover {
+            transform: translateY(-5px);
         }
 
-        .gallery-item {
-            min-width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .gallery-item img {
+        .single-photo-container img {
             width: 100%;
-            max-height: 500px;
+            height: auto;
+            max-height: 600px;
             object-fit: cover;
             border-radius: 20px;
+            display: block;
         }
-
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .prev-btn { left: 30px; }
-        .next-btn { right: 30px; }
-
-        .gallery-dots {
-            margin-top: 15px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            transition: 0.3s;
-        }
-
-        .dot.active { background: var(--accent-brand); transform: scale(1.2); }
 
         .expert-card {
             background: rgba(47, 159, 230, 0.15);
@@ -375,10 +335,9 @@
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
             h1 { font-size: 2.2rem; }
-            .nav-btn { display: none; } 
-            .gallery-item img { max-height: 300px; }
             .kit-preview-container { flex-direction: column; text-align: center; }
             .kit-preview-img img { max-width: 200px; }
+            .single-photo-container img { max-height: 350px; }
         }
     </style>
 </head>
@@ -397,7 +356,8 @@
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html">Start</a></li>
                 <li><a href="trenerzy.html">Kadra</a></li>
-                <li><a href="stroje.html">Stroje</a></li> <li><a href="terminarz.html">Terminarz</a></li>
+                <li><a href="stroje.html">Stroje</a></li> 
+                <li><a href="terminarz.html">Terminarz</a></li>
                 <li><a href="regulamin.html">Regulamin</a></li>
                 <li><a href="#zapisy" class="nav-cta">Darmowy Trening</a></li>
             </ul>
@@ -429,7 +389,7 @@
             <div class="kit-preview-text">
                 <h3>Oficjalny zestaw Nike</h3>
                 <p>Każdy zawodnik naszej Akademii trenuje w profesjonalnym stroju marki Nike. Dowiedz się więcej o wymiarach i cenach zestawów.</p>
-                <br>
+                <br><br>
                 <a href="stroje.html" class="cta-button" style="padding: 12px 30px; font-size: 0.9rem;">Sprawdź szczegóły</a>
             </div>
         </div>
@@ -474,23 +434,8 @@
 
     <section class="gallery-section">
         <h2>Nasza Akademia w obiektywie</h2>
-        <div class="gallery-container">
-            <button class="nav-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="nav-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
-            <div class="gallery-slider" id="slider">
-                <div class="gallery-item"><img src="galeria 1.png" alt="Trening 1"></div>
-                <div class="gallery-item"><img src="galeria 2.png" alt="Trening 2"></div>
-                <div class="gallery-item"><img src="galeria 3.png" alt="Trening 3"></div>
-                <div class="gallery-item"><img src="galeria 4.png" alt="Trening 4"></div>
-                <div class="gallery-item"><img src="galeria 5.png" alt="Trening 5"></div>
-            </div>
-            <div class="gallery-dots">
-                <span class="dot active" onclick="currentSlide(0)"></span>
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-            </div>
+        <div class="single-photo-container">
+            <img src="fotka.png" alt="Nasza Akademia">
         </div>
     </section>
 
@@ -516,7 +461,7 @@
             <h2>Widzimy się na treningu!</h2>
             <p>Skorzystaj z szansy i podaruj dziecku niezapomniane sportowe wrażenia.</p>
             <p><strong>Zadzwoń: +48 602 281 550</strong></p>
-            <br>
+            <br><br>
             <a href="tel:+48602281550" class="cta-button">ZADZWOŃ I REZERWUJ</a>
         </div>
     </section>
@@ -541,30 +486,6 @@
             navMenu.classList.remove('active');
         });
     });
-
-    let currentIdx = 0;
-    const slider = document.getElementById('slider');
-    const dots = document.querySelectorAll('.dot');
-    const totalSlides = 5;
-
-    function updateGallery() {
-        slider.style.transform = `translateX(-${currentIdx * 100}%)`;
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIdx);
-        });
-    }
-
-    function moveSlide(direction) {
-        currentIdx = (currentIdx + direction + totalSlides) % totalSlides;
-        updateGallery();
-    }
-
-    function currentSlide(index) {
-        currentIdx = index;
-        updateGallery();
-    }
-
-    setInterval(() => { moveSlide(1); }, 5000);
 </script>
 
 </body>
