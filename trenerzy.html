@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nasza Kadra - AP JŁ Wawer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-blue: #2f9fe6;
-            --accent-brand: #2f9fe6;
-            --friendly-green: #2ecc71; 
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-bg: rgba(0, 0, 0, 0.7);
+            --glass-border: rgba(47, 159, 230, 0.3);
             --nav-height: 80px;
         }
 
@@ -19,233 +17,205 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background: #0a0a0a;
+            background: #050505;
             color: white;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* --- TŁO I WRAPPER --- */
         .site-wrapper {
-            position: relative;
-            min-height: 100vh;
-            width: 100%;
+            padding: 40px 5%;
+            padding-top: calc(var(--nav-height) + 40px);
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 15px;
-            padding-top: calc(var(--nav-height) + 40px);
         }
 
         .site-wrapper::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), 
-                        url('boisko.png') no-repeat center center;
-            background-size: cover;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('boisko.png') center/cover;
             z-index: -1;
         }
 
-        /* --- NAWIGACJA (Standardowa) --- */
-        .main-navbar {
-            position: fixed;
-            top: 0; width: 100%; height: var(--nav-height);
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
-            z-index: 9999;
-        }
-
-        .nav-container {
-            max-width: 1200px; height: 100%; margin: 0 auto;
-            display: flex; justify-content: space-between; align-items: center; padding: 0 20px;
-        }
-
-        .nav-logo img { height: 45px; }
-
-        .nav-menu { display: flex; list-style: none; gap: 20px; }
-        .nav-menu a { color: white; text-decoration: none; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
-
-        /* --- GRID TRENERÓW --- */
         h1 {
-            text-transform: uppercase; font-weight: 900; font-size: 2rem;
-            margin-bottom: 40px; text-align: center;
+            text-transform: uppercase;
+            font-weight: 900;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            text-align: center;
+            letter-spacing: 2px;
         }
-        h1 span { color: var(--primary-blue); }
+        h1 span { color: var(--primary-blue); text-shadow: 0 0 15px rgba(47, 159, 230, 0.5); }
 
-        .coaches-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
+        /* --- GRID TRENERÓW (STALOWY UKŁAD) --- */
+        .coaches-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 na laptopie */
+            gap: 20px;
             width: 100%;
             max-width: 1200px;
         }
 
         .coach-card {
             position: relative;
-            width: 250px; /* Dla komputerów */
-            height: 350px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
+            aspect-ratio: 2/3;
+            background: #111;
+            border: 2px solid var(--glass-border);
+            border-radius: 15px;
             overflow: hidden;
             cursor: pointer;
-            transition: 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .coach-card img {
-            width: 100%; height: 100%;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            filter: grayscale(100%) brightness(0.7);
-            transition: 0.4s;
+            filter: grayscale(1) brightness(0.6);
+            transition: 0.5s;
         }
 
-        .coach-card.active-card {
+        /* --- OPIS WEWNĄTRZ KARTY (JAK W GRACH) --- */
+        .coach-overlay {
+            position: absolute;
+            bottom: -100%; /* Ukryty pod kartą */
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,1) 30%, rgba(47, 159, 230, 0.8));
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: 0.5s ease-in-out;
+            backdrop-filter: blur(5px);
+        }
+
+        .coach-overlay h3 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            color: var(--primary-blue);
+            margin-bottom: 8px;
+        }
+
+        .coach-overlay p {
+            font-size: 0.85rem;
+            line-height: 1.4;
+            color: #fff;
+        }
+
+        /* --- INTERAKCJE --- */
+        .coach-card:hover, .coach-card.active {
+            transform: scale(1.05);
             border-color: var(--primary-blue);
-            box-shadow: 0 0 20px rgba(47, 159, 230, 0.4);
-            transform: scale(0.98);
+            box-shadow: 0 0 30px rgba(47, 159, 230, 0.4);
         }
 
-        .coach-card.active-card img { filter: grayscale(0%) brightness(1); }
-
-        .coach-name-tag {
-            position: absolute; bottom: 0; width: 100%;
-            padding: 15px; background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            text-align: center; font-weight: 700; font-size: 0.8rem; text-transform: uppercase;
+        .coach-card:hover img, .coach-card.active img {
+            filter: grayscale(0) brightness(1);
         }
 
-        /* --- PANEL OPISU (POJAWIA SIĘ DYNAMICZNIE) --- */
-        .description-panel {
-            display: none; /* Ukryty na starcie */
-            width: 100%; /* Zawsze cała szerokość pod trenerem */
-            background: rgba(47, 159, 230, 0.15);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--primary-blue);
-            border-radius: 20px;
-            padding: 25px;
-            margin: 10px 0 20px 0;
+        .coach-card:hover .coach-overlay, .coach-card.active .coach-overlay {
+            bottom: 0; /* Wjeżdża na górę */
+        }
+
+        .coach-name-static {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
             text-align: center;
-            animation: slideDown 0.4s ease-out;
-            order: 0; /* Ważne dla układu flex */
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            transition: 0.3s;
         }
 
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .coach-card:hover .coach-name-static {
+            opacity: 0; /* Znika, gdy wjeżdża pełny opis */
         }
-
-        .description-panel h3 { color: var(--primary-blue); margin-bottom: 10px; text-transform: uppercase; }
-        .description-panel p { line-height: 1.6; color: #eee; }
 
         /* --- RESPONSYWNOŚĆ MOBILNA --- */
-        @media (max-width: 768px) {
-            .nav-menu { display: none; } /* Uproszczenie dla mobilki */
-            h1 { font-size: 1.5rem; }
-            
-            .coach-card {
-                width: calc(50% - 10px); /* Dwie kolumny */
-                height: 280px;
+        @media (max-width: 900px) {
+            .coaches-grid {
+                grid-template-columns: repeat(2, 1fr); /* DWAJ TRENERZY W LINII */
+                gap: 10px;
+                padding: 0 10px;
             }
+            h1 { font-size: 1.6rem; }
+            .coach-overlay { padding: 12px; }
+            .coach-overlay h3 { font-size: 0.9rem; }
+            .coach-overlay p { font-size: 0.75rem; }
+        }
 
-            .description-panel {
-                padding: 20px;
-                font-size: 0.9rem;
-            }
+        /* Dodatkowe ułatwienie kliknięcia dla wersji mobilnej */
+        .coach-card:active {
+            transform: scale(0.95);
         }
     </style>
 </head>
 <body>
 
-<nav class="main-navbar">
-    <div class="nav-container">
-        <a href="index.html" class="nav-logo"><img src="logo.png" alt="AP JŁ Wawer"></a>
-        <ul class="nav-menu">
-            <li><a href="index.html">Start</a></li>
-            <li><a href="trenerzy.html" style="color: var(--primary-blue);">Kadra</a></li>
-            <li><a href="terminarz.html">Terminarz</a></li>
-        </ul>
-    </div>
-</nav>
-
 <div class="site-wrapper">
-    <h1>Poznaj Naszych <span>Ekspertów</span></h1>
+    <h1>Wybierz <span>Szkoleniowca</span></h1>
 
-    <div class="coaches-row" id="coaches-grid">
-        <div class="coach-card" onclick="handleCoachClick('trener1', this)">
+    <div class="coaches-grid">
+        <div class="coach-card" onclick="toggleActive(this)">
             <img src="trener 1.png" alt="Marek Bączkowski">
-            <div class="coach-name-tag">Marek Bączkowski</div>
+            <div class="coach-name-static">Marek Bączkowski</div>
+            <div class="coach-overlay">
+                <h3>Marek Bączkowski</h3>
+                <p>Trener UEFA C. Specjalista od szkolenia początkowego, który potrafi zaszczepić pasję do piłki u najmłodszych adeptów.</p>
+            </div>
         </div>
 
-        <div class="coach-card" onclick="handleCoachClick('trener2', this)">
+        <div class="coach-card" onclick="toggleActive(this)">
             <img src="trener 2.png" alt="Janusz Łagiewnicki">
-            <div class="coach-name-tag">Janusz Łagiewnicki</div>
+            <div class="coach-name-static">Janusz Łagiewnicki</div>
+            <div class="coach-overlay">
+                <h3>Janusz Łagiewnicki</h3>
+                <p>Trener UEFA A, Prezes Akademii. Wieloletnie doświadczenie w prowadzeniu zespołów młodzieżowych i seniorskich.</p>
+            </div>
         </div>
 
-        <div class="coach-card" onclick="handleCoachClick('trener3', this)">
+        <div class="coach-card" onclick="toggleActive(this)">
             <img src="trener 3.png" alt="Damian Olszewski">
-            <div class="coach-name-tag">Damian Olszewski</div>
+            <div class="coach-name-static">Damian Olszewski</div>
+            <div class="coach-overlay">
+                <h3>Damian Olszewski</h3>
+                <p>Trener UEFA B. Koncentruje się na rozwoju techniki indywidualnej oraz przygotowaniu motorycznym zawodników.</p>
+            </div>
         </div>
 
-        <div class="coach-card" onclick="handleCoachClick('trener4', this)">
+        <div class="coach-card" onclick="toggleActive(this)">
             <img src="trener 4.png" alt="Piotr Wiśnik">
-            <div class="coach-name-tag">dr Piotr Wiśnik</div>
+            <div class="coach-name-static">dr Piotr Wiśnik</div>
+            <div class="coach-overlay">
+                <h3>dr Piotr Wiśnik</h3>
+                <p>Doktor fizjologii sportu, trener klasy mistrzowskiej. Odpowiada za przygotowanie fizyczne i zdrowie naszych zawodników.</p>
+            </div>
         </div>
-    </div>
-
-    <div class="description-panel" id="desc-panel">
-        <h3 id="coach-title">Tytuł</h3>
-        <p id="coach-text">Opis...</p>
     </div>
 </div>
 
 <script>
-    const coachData = {
-        trener1: {
-            name: "Marek Bączkowski",
-            text: "Trener UEFA C. Specjalista od szkolenia początkowego, który potrafi zaszczepić pasję do piłki u najmłodszych adeptów."
-        },
-        trener2: {
-            name: "Janusz Łagiewnicki",
-            text: "Trener UEFA A, Prezes Akademii. Wieloletnie doświadczenie w prowadzeniu zespołów młodzieżowych i seniorskich."
-        },
-        trener3: {
-            name: "Damian Olszewski",
-            text: "Trener UEFA B. Koncentruje się na rozwoju techniki indywidualnej oraz przygotowaniu motorycznym zawodników."
-        },
-        trener4: {
-            name: "dr Piotr Wiśnik",
-            text: "Doktor fizjologii sportu, trener klasy mistrzowskiej. Odpowiada za przygotowanie fizyczne i zdrowie zawodników."
+    // Funkcja do obsługi kliknięć na komórkach
+    function toggleActive(card) {
+        // Sprawdź czy to urządzenie dotykowe / mały ekran
+        if (window.innerWidth < 900) {
+            const isActive = card.classList.contains('active');
+            
+            // Usuń klasę 'active' ze wszystkich kart
+            document.querySelectorAll('.coach-card').forEach(c => c.classList.remove('active'));
+            
+            // Jeśli karta nie była aktywna, to ją aktywuj
+            if (!isActive) {
+                card.classList.add('active');
+            }
         }
-    };
-
-    const panel = document.getElementById('desc-panel');
-    const title = document.getElementById('coach-title');
-    const text = document.getElementById('coach-text');
-
-    function handleCoachClick(id, element) {
-        // 1. Usuń aktywną klasę z innych kart
-        document.querySelectorAll('.coach-card').forEach(card => card.classList.remove('active-card'));
-        
-        // 2. Jeśli ten sam trener jest już otwarty i kliknięty ponownie - zamknij (opcjonalnie)
-        // Dla ułatwienia obsługi: po prostu zawsze otwieraj pod klikniętym
-        element.classList.add('active-card');
-
-        // 3. Wstaw dane
-        title.innerText = coachData[id].name;
-        text.innerText = coachData[id].text;
-
-        // 4. KLUCZOWE: Przenieś panel bezpośrednio ZA klikniętą kartę
-        element.after(panel);
-
-        // 5. Pokaż panel
-        panel.style.display = 'block';
-
-        // 6. Delikatne przewinięcie, żeby opis był widoczny
-        setTimeout(() => {
-            panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 100);
     }
 </script>
 
