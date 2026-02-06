@@ -46,13 +46,14 @@
         }
         h1 span { color: var(--primary-blue); }
 
-        /* --- GRID TRENERÓW (LAPTOP: 4 W LINII) --- */
+        /* --- GRID TRENERÓW --- */
         .coaches-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 25px;
             width: 100%;
             max-width: 1200px;
+            margin-bottom: 50px; /* Miejsce na przycisk pod spodem */
         }
 
         .coach-card {
@@ -97,14 +98,12 @@
             text-transform: uppercase;
             color: #ccc;
             margin-bottom: 10px;
-            transition: 0.3s;
         }
 
         .coach-info p {
             font-size: 0.9rem;
             line-height: 1.6;
             color: #888;
-            transition: 0.3s;
         }
 
         /* --- EFEKTY --- */
@@ -120,27 +119,42 @@
             transform: scale(1.05);
         }
 
-        .coach-card:hover .coach-info h3, .coach-card.active .coach-info h3 {
-            color: var(--primary-blue);
+        .coach-card:hover .coach-info h3, .coach-card.active .coach-info h3 { color: var(--primary-blue); }
+        .coach-card:hover .coach-info p, .coach-card.active .coach-info p { color: #fff; }
+
+        /* --- PRZYCISK POWROTU --- */
+        .back-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            border: 2px solid var(--primary-blue);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(47, 159, 230, 0.2);
+            margin-top: 20px;
         }
 
-        .coach-card:hover .coach-info p, .coach-card.active .coach-info p {
-            color: #fff;
+        .back-button:hover {
+            background: var(--primary-blue);
+            box-shadow: 0 0 30px rgba(47, 159, 230, 0.5);
+            transform: scale(1.05);
         }
 
-        /* --- RESPONSYWNOŚĆ MOBILNA (1 W LINII) --- */
+        /* --- RESPONSYWNOŚĆ MOBILNA --- */
         @media (max-width: 900px) {
             .coaches-grid {
-                grid-template-columns: 1fr; /* Jeden trener na całą szerokość */
-                gap: 30px; /* Większy odstęp między trenerami dla łatwiejszego przewijania */
-                max-width: 450px; /* Żeby na tabletach nie były karykaturialnie szerokie */
+                grid-template-columns: 1fr;
+                max-width: 450px;
             }
-            .coach-img-box {
-                height: 350px; /* Optymalna wysokość na telefonie */
-            }
-            h1 { font-size: 1.8rem; }
-            .coach-info p {
-                font-size: 1rem; /* Większy tekst dla lepszej czytelności na telefonie */
+            .coach-img-box { height: 350px; }
+            .back-button {
+                width: 90%; /* Większy przycisk na telefonie, łatwiej kliknąć */
+                text-align: center;
             }
         }
     </style>
@@ -152,45 +166,39 @@
 
     <div class="coaches-grid">
         <div class="coach-card" onclick="toggleActive(this)">
-            <div class="coach-img-box">
-                <img src="trener 1.png" alt="Marek Bączkowski">
-            </div>
+            <div class="coach-img-box"><img src="trener 1.png" alt="Marek Bączkowski"></div>
             <div class="coach-info">
                 <h3>Marek Bączkowski</h3>
-                <p>Trener UEFA C. Specjalista od szkolenia początkowego, pasjonat pracy z najmłodszymi adeptami piłki.</p>
+                <p>Trener UEFA C. Specjalista od szkolenia początkowego.</p>
             </div>
         </div>
 
         <div class="coach-card" onclick="toggleActive(this)">
-            <div class="coach-img-box">
-                <img src="trener 2.png" alt="Janusz Łagiewnicki">
-            </div>
+            <div class="coach-img-box"><img src="trener 2.png" alt="Janusz Łagiewnicki"></div>
             <div class="coach-info">
                 <h3>Janusz Łagiewnicki</h3>
-                <p>Trener UEFA A, Prezes Akademii. Wieloletnie doświadczenie w szkoleniu młodzieży na najwyższym poziomie.</p>
+                <p>Trener UEFA A, Prezes Akademii.</p>
             </div>
         </div>
 
         <div class="coach-card" onclick="toggleActive(this)">
-            <div class="coach-img-box">
-                <img src="trener 3.png" alt="Damian Olszewski">
-            </div>
+            <div class="coach-img-box"><img src="trener 3.png" alt="Damian Olszewski"></div>
             <div class="coach-info">
                 <h3>Damian Olszewski</h3>
-                <p>Trener UEFA B. Koncentruje się na rozwoju techniki indywidualnej i przygotowaniu motorycznym.</p>
+                <p>Trener UEFA B. Ekspert od techniki.</p>
             </div>
         </div>
 
         <div class="coach-card" onclick="toggleActive(this)">
-            <div class="coach-img-box">
-                <img src="trener 4.png" alt="dr Piotr Wiśnik">
-            </div>
+            <div class="coach-img-box"><img src="trener 4.png" alt="dr Piotr Wiśnik"></div>
             <div class="coach-info">
                 <h3>dr Piotr Wiśnik</h3>
-                <p>Doktor fizjologii sportu. Odpowiada za naukową stronę treningu, dietę i zdrowie zawodników.</p>
+                <p>Doktor fizjologii sportu.</p>
             </div>
         </div>
     </div>
+
+    <a href="index.html" class="back-button">Powrót do strony głównej</a>
 </div>
 
 <script>
