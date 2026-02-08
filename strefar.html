@@ -27,11 +27,12 @@
         }
 
         /* MENU */
-        .main-navbar { position: fixed; top: 0; width: 100%; height: var(--nav-height); background: rgba(0,0,0,0.5); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border); z-index: 9999; }
+        .main-navbar { position: fixed; top: 0; width: 100%; height: var(--nav-height); background: rgba(0,0,0,0.6); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border); z-index: 9999; }
         .nav-container { max-width: 1200px; height: 100%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; }
         .nav-logo img { height: 50px; }
         .nav-menu { display: flex; list-style: none; gap: 20px; }
-        .nav-menu a { color: white; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; }
+        .nav-menu a { color: white; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; transition: 0.3s; }
+        .nav-menu a:hover { color: var(--primary-blue); }
 
         /* NAGŁÓWEK STRONY */
         .page-header { padding: 60px 5% 30px; text-align: center; }
@@ -39,7 +40,7 @@
         h1 span { color: var(--accent-brand); }
 
         /* KONTENER STREFY RODZICA */
-        .parent-zone { max-width: 1000px; margin: 0 auto; padding: 40px 5%; }
+        .parent-zone { max-width: 1000px; margin: 0 auto; padding: 20px 5% 40px; }
 
         /* SEKCJA POBIERANIA */
         .download-box {
@@ -50,48 +51,40 @@
             padding: 40px;
             text-align: center;
             transition: transform 0.3s ease;
+            margin-bottom: 40px;
         }
         .download-box:hover { transform: translateY(-5px); }
 
         .pdf-icon {
-            width: 80px;
-            height: 80px;
-            background: #ff4d4d;
-            border-radius: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 20px;
-            font-weight: 900;
-            font-size: 1.5rem;
+            width: 80px; height: 80px; background: #ff4d4d; border-radius: 20px;
+            display: flex; justify-content: center; align-items: center;
+            margin: 0 auto 20px; font-weight: 900; font-size: 1.5rem;
             box-shadow: 0 10px 20px rgba(255, 77, 77, 0.3);
         }
 
         .download-btn {
             background: var(--friendly-green);
-            color: white;
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 900;
-            text-transform: uppercase;
-            display: inline-block;
-            margin-top: 25px;
-            transition: 0.3s;
+            color: white; padding: 18px 40px; border-radius: 50px;
+            text-decoration: none; font-weight: 900; text-transform: uppercase;
+            display: inline-block; margin-top: 25px; transition: 0.3s;
             box-shadow: 0 10px 20px rgba(46, 204, 113, 0.2);
         }
         .download-btn:hover { background: #27ae60; box-shadow: 0 15px 25px rgba(46, 204, 113, 0.4); }
 
-        /* DODATKOWE INFORMACJE */
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
-        .info-card { background: rgba(255,255,255,0.05); padding: 25px; border-radius: 20px; border-left: 4px solid var(--primary-blue); }
-        .info-card h3 { margin-bottom: 10px; color: var(--primary-blue); }
+        /* DODATKOWE INFORMACJE - GRID */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .info-card { background: rgba(0,0,0,0.6); padding: 30px; border-radius: 20px; border: 1px solid var(--glass-border); border-top: 4px solid var(--primary-blue); }
+        .info-card h3 { margin-bottom: 15px; color: var(--primary-blue); text-transform: uppercase; font-size: 1.1rem; }
+        .info-card p { margin-bottom: 8px; font-size: 0.95rem; }
+        
+        /* PODŚWIETLENIE KONTA */
+        .bank-account { color: white; font-weight: 700; letter-spacing: 1px; display: block; margin-top: 5px; font-size: 1rem; }
 
         footer { text-align: center; padding: 60px 40px; color: #666; font-size: 0.8rem; }
 
-        @media (max-width: 600px) {
+        @media (max-width: 900px) {
             h1 { font-size: 1.8rem; }
-            .nav-menu { display: none; }
+            .nav-menu { display: none; } /* Tutaj docelowo będzie Twój hamburger */
         }
     </style>
 </head>
@@ -102,16 +95,18 @@
         <div class="nav-container">
             <a href="index.html" class="nav-logo"><img src="logo.png" alt="AP JŁ Wawer"></a>
             <ul class="nav-menu">
-                <li><a href="index.html">Strona Główna</a></li>
+                <li><a href="index.html">Start</a></li>
                 <li><a href="trenerzy.html">Kadra</a></li>
+                <li><a href="stroje.html">Stroje</a></li>
                 <li><a href="terminarz.html">Terminarz</a></li>
+                <li><a href="regulamin.html">Regulamin</a></li>
             </ul>
         </div>
     </nav>
 
     <header class="page-header">
         <h1>Strefa <span>Rodzica</span></h1>
-        <p>Wszystkie ważne dokumenty i informacje w jednym miejscu.</p>
+        <p>Wszystkie ważne dokumenty i informacje finansowe w jednym miejscu.</p>
     </header>
 
     <main class="parent-zone">
@@ -124,16 +119,28 @@
 
         <div class="info-grid">
             <div class="info-card">
-                <h3>Składki członkowskie</h3>
-                <p>Informacje o opłatach treningowych oraz numer konta do wpłat znajdziesz w regulaminie akademii.</p>
+                <h3>Dane do przelewu</h3>
+                <p><strong>Akademia Piłkarska JŁ Wawer</strong></p>
+                <p>Konto bankowe:</p>
+                <span class="bank-account">72 1020 1127 0000 1502 0282 9505</span>
+                <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">Tytułem: Imię i Nazwisko dziecka + miesiąc</p>
             </div>
+
             <div class="info-card">
-                <h3>Ubezpieczenie</h3>
-                <p>Każdy zawodnik naszej akademii jest objęty podstawowym ubezpieczeniem NNW sportowym.</p>
+                <h3>Siedziba i Rejestracja</h3>
+                <p>Ul. Mrągowska 28P</p>
+                <p>04-988 Warszawa</p>
+                <p style="margin-top: 10px; font-size: 0.85rem; color: #aaa;">
+                    NIP: 952-216-43-20<br>
+                    REGON: 367516156
+                </p>
             </div>
+
             <div class="info-card">
-                <h3>Pierwszy trening</h3>
-                <p>Pamiętaj o butach na zmianę (halówki lub korki), stroju sportowym oraz butelce wody dla dziecka.</p>
+                <h3>Kontakt</h3>
+                <p>Telefon: <strong>+48 602 281 550</strong></p>
+                <p>E-mail: <a href="mailto:janusz.lagiewnicki@wp.pl" style="color: var(--primary-blue); text-decoration: none;">janusz.lagiewnicki@wp.pl</a></p>
+                <p style="margin-top: 10px; font-size: 0.85rem; color: #aaa;">Ubezpieczenie: NNW Sportowe w cenie składki.</p>
             </div>
         </div>
     </main>
