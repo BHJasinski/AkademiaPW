@@ -49,11 +49,11 @@
         /* --- GRID TRENERÓW --- */
         .coaches-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr); /* Zmienione na 3 kolumny dla lepszego wyglądu */
             gap: 25px;
             width: 100%;
-            max-width: 1200px;
-            margin-bottom: 50px; /* Miejsce na przycisk pod spodem */
+            max-width: 1100px;
+            margin-bottom: 50px;
         }
 
         .coach-card {
@@ -153,7 +153,7 @@
             }
             .coach-img-box { height: 350px; }
             .back-button {
-                width: 90%; /* Większy przycisk na telefonie, łatwiej kliknąć */
+                width: 90%;
                 text-align: center;
             }
         }
@@ -186,14 +186,6 @@
             <div class="coach-info">
                 <h3>Damian Olszewski</h3>
                 <p>Trener UEFA B. Ekspert od techniki.</p>
-            </div>
-        </div>
-
-        <div class="coach-card" onclick="toggleActive(this)">
-            <div class="coach-img-box"><img src="trener 4.png" alt="dr Piotr Wiśnik"></div>
-            <div class="coach-info">
-                <h3>dr Piotr Wiśnik</h3>
-                <p>Doktor fizjologii sportu.</p>
             </div>
         </div>
     </div>
