@@ -16,7 +16,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: white; line-height: 1.6; }
+        body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: white; line-height: 1.6; overflow-x: hidden; }
 
         /* TŁO */
         .site-wrapper { position: relative; min-height: 100vh; width: 100%; padding-top: var(--nav-height); }
@@ -26,13 +26,17 @@
             z-index: -1;
         }
 
-        /* MENU */
-        .main-navbar { position: fixed; top: 0; width: 100%; height: var(--nav-height); background: rgba(0,0,0,0.6); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border); z-index: 9999; }
+        /* MENU Z HAMBURGEREM */
+        .main-navbar { position: fixed; top: 0; width: 100%; height: var(--nav-height); background: rgba(0,0,0,0.8); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border); z-index: 9999; }
         .nav-container { max-width: 1200px; height: 100%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; }
         .nav-logo img { height: 50px; }
-        .nav-menu { display: flex; list-style: none; gap: 20px; }
-        .nav-menu a { color: white; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; transition: 0.3s; }
+        
+        .nav-menu { display: flex; list-style: none; gap: 20px; align-items: center; }
+        .nav-menu a { color: white; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; transition: 0.3s; }
         .nav-menu a:hover { color: var(--primary-blue); }
+
+        .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; }
+        .hamburger span { display: block; width: 28px; height: 3px; background: white; border-radius: 3px; transition: 0.3s; }
 
         /* NAGŁÓWEK STRONY */
         .page-header { padding: 60px 5% 30px; text-align: center; }
@@ -50,41 +54,57 @@
             border-radius: 30px;
             padding: 40px;
             text-align: center;
-            transition: transform 0.3s ease;
             margin-bottom: 40px;
         }
-        .download-box:hover { transform: translateY(-5px); }
 
         .pdf-icon {
-            width: 80px; height: 80px; background: #ff4d4d; border-radius: 20px;
+            width: 70px; height: 70px; background: #ff4d4d; border-radius: 15px;
             display: flex; justify-content: center; align-items: center;
-            margin: 0 auto 20px; font-weight: 900; font-size: 1.5rem;
-            box-shadow: 0 10px 20px rgba(255, 77, 77, 0.3);
+            margin: 0 auto 20px; font-weight: 900;
         }
 
-        .download-btn {
-            background: var(--friendly-green);
-            color: white; padding: 18px 40px; border-radius: 50px;
-            text-decoration: none; font-weight: 900; text-transform: uppercase;
-            display: inline-block; margin-top: 25px; transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.2);
+        /* PRZYCISKI */
+        .btn {
+            padding: 18px 40px; border-radius: 50px; text-decoration: none;
+            font-weight: 900; text-transform: uppercase; display: inline-block;
+            transition: 0.3s; cursor: pointer; border: none;
         }
-        .download-btn:hover { background: #27ae60; box-shadow: 0 15px 25px rgba(46, 204, 113, 0.4); }
-
-        /* DODATKOWE INFORMACJE - GRID */
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .info-card { background: rgba(0,0,0,0.6); padding: 30px; border-radius: 20px; border: 1px solid var(--glass-border); border-top: 4px solid var(--primary-blue); }
-        .info-card h3 { margin-bottom: 15px; color: var(--primary-blue); text-transform: uppercase; font-size: 1.1rem; }
-        .info-card p { margin-bottom: 8px; font-size: 0.95rem; }
+        .btn-green { background: var(--friendly-green); color: white; box-shadow: 0 10px 20px rgba(46, 204, 113, 0.2); }
+        .btn-green:hover { background: #27ae60; transform: translateY(-3px); }
         
-        /* PODŚWIETLENIE KONTA */
-        .bank-account { color: white; font-weight: 700; letter-spacing: 1px; display: block; margin-top: 5px; font-size: 1rem; }
+        .btn-blue { background: var(--primary-blue); color: white; box-shadow: 0 10px 20px rgba(47, 159, 230, 0.2); margin-top: 20px; }
+        .btn-blue:hover { background: #1a8ad4; transform: translateY(-3px); }
+
+        /* SEKCJA TERMINARZA (NOWA) */
+        .schedule-cta {
+            background: rgba(47, 159, 230, 0.1);
+            border: 2px dashed var(--primary-blue);
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* GRID INFORMACYJNY */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .info-card { background: rgba(0,0,0,0.7); padding: 30px; border-radius: 20px; border: 1px solid var(--glass-border); border-top: 4px solid var(--primary-blue); }
+        .info-card h3 { margin-bottom: 15px; color: var(--primary-blue); text-transform: uppercase; font-size: 1.1rem; }
+        
+        .bank-account { color: white; font-weight: 700; display: block; margin-top: 5px; font-size: 1rem; }
 
         footer { text-align: center; padding: 60px 40px; color: #666; font-size: 0.8rem; }
 
+        /* RESPONSYWNOŚĆ MOBILNA */
         @media (max-width: 900px) {
+            .hamburger { display: flex; z-index: 10001; }
+            .nav-menu { 
+                position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; 
+                background: rgba(10,10,10,0.98); flex-direction: column; justify-content: center; 
+                transition: 0.5s; gap: 30px; 
+            }
+            .nav-menu.active { right: 0; }
+            .nav-menu a { font-size: 1.2rem; }
             h1 { font-size: 1.8rem; }
-            .nav-menu { display: none; } /* Tutaj docelowo będzie Twój hamburger */
         }
     </style>
 </head>
@@ -94,13 +114,16 @@
     <nav class="main-navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo"><img src="logo.png" alt="AP JŁ Wawer"></a>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html">Start</a></li>
                 <li><a href="trenerzy.html">Kadra</a></li>
                 <li><a href="stroje.html">Stroje</a></li>
                 <li><a href="terminarz.html">Terminarz</a></li>
                 <li><a href="regulamin.html">Regulamin</a></li>
             </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
         </div>
     </nav>
 
@@ -113,35 +136,35 @@
         <div class="download-box">
             <div class="pdf-icon">PDF</div>
             <h2>Deklaracja Członkowska</h2>
-            <p>Pobierz, wydrukuj i przynieś uzupełnioną deklarację na najbliższy trening swojego dziecka.</p>
-            <a href="DEKLARACJA.pdf" download class="download-btn">Pobierz Deklarację (.PDF)</a>
+            <p>Pobierz, wydrukuj i przynieś uzupełnioną deklarację na najbliższy trening.</p>
+            <a href="DEKLARACJA.pdf" download class="btn btn-green">Pobierz Deklarację</a>
         </div>
 
         <div class="info-grid">
             <div class="info-card">
                 <h3>Dane do przelewu</h3>
                 <p><strong>Akademia Piłkarska JŁ Wawer</strong></p>
-                <p>Konto bankowe:</p>
                 <span class="bank-account">72 1020 1127 0000 1502 0282 9505</span>
                 <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">Tytułem: Imię i Nazwisko dziecka + miesiąc</p>
             </div>
 
             <div class="info-card">
-                <h3>Siedziba i Rejestracja</h3>
-                <p>Ul. Mrągowska 28P</p>
-                <p>04-988 Warszawa</p>
-                <p style="margin-top: 10px; font-size: 0.85rem; color: #aaa;">
-                    NIP: 952-216-43-20<br>
-                    REGON: 367516156
-                </p>
+                <h3>Siedziba</h3>
+                <p>Ul. Mrągowska 28P, Warszawa</p>
+                <p style="margin-top: 10px; font-size: 0.85rem; color: #aaa;">NIP: 952-216-43-20</p>
             </div>
 
             <div class="info-card">
                 <h3>Kontakt</h3>
-                <p>Telefon: <strong>+48 602 281 550</strong></p>
-                <p>E-mail: <a href="mailto:janusz.lagiewnicki@wp.pl" style="color: var(--primary-blue); text-decoration: none;">janusz.lagiewnicki@wp.pl</a></p>
-                <p style="margin-top: 10px; font-size: 0.85rem; color: #aaa;">Ubezpieczenie: NNW Sportowe w cenie składki.</p>
+                <p>Tel: <strong>+48 602 281 550</strong></p>
+                <p>Email: janusz.lagiewnicki@wp.pl</p>
             </div>
+        </div>
+
+        <div class="schedule-cta">
+            <h2>Kiedy gramy?</h2>
+            <p>Sprawdź aktualny grafik treningów i meczów dla wszystkich grup wiekowych.</p>
+            <a href="terminarz.html" class="btn btn-blue">Zobacz Terminarz Treningów</a>
         </div>
     </main>
 
@@ -149,6 +172,21 @@
         &copy; 2026 Akademia Piłkarska JŁ Wawer. Projekt: Jasiński Bartosz
     </footer>
 </div>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-menu a').forEach(n => n.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+    }));
+</script>
 
 </body>
 </html>
