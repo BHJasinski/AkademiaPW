@@ -8,135 +8,101 @@
     <style>
         :root {
             --primary-blue: #2f9fe6;
-            --accent-brand: #2f9fe6;
+            --accent-blue: #0084ff;
             --friendly-green: #2ecc71; 
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
             --nav-height: 80px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: white; line-height: 1.6; overflow-x: hidden; }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: #0a0a0a;
-            color: white;
-            line-height: 1.6;
-            overflow-x: hidden;
+        /* --- TŁO STRONY --- */
+        .site-wrapper { position: relative; min-height: 100vh; padding-top: var(--nav-height); padding-bottom: 60px; }
+        .site-wrapper::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)), url('boisko.png') no-repeat center center/cover;
+            z-index: -1;
         }
 
-        /* --- PŁYWAJĄCY PRZYCISK FB --- */
-        .fb-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: #1877f2;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            z-index: 10000;
-            box-shadow: 0 10px 25px rgba(24, 119, 242, 0.4);
-            transition: 0.3s;
-            border: 2px solid rgba(255,255,255,0.2);
-        }
-
-        /* --- NAWIGACJA (JEDNOLITA) --- */
+        /* --- NAWIGACJA --- */
         .main-navbar {
-            position: fixed;
-            top: 0; width: 100%; height: var(--nav-height);
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
-            z-index: 9999;
+            position: fixed; top: 0; width: 100%; height: var(--nav-height);
+            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border); z-index: 9999;
         }
         .nav-container {
             max-width: 1200px; height: 100%; margin: 0 auto;
             display: flex; justify-content: space-between; align-items: center; padding: 0 5%;
         }
-        .nav-logo img { height: 50px; }
-        
+        .nav-logo img { height: 45px; }
         .nav-menu { display: flex; list-style: none; gap: 20px; align-items: center; }
-        .nav-menu a { color: white; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; transition: 0.3s; }
+        .nav-menu a { color: white; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; transition: 0.3s; }
         .nav-menu a:hover { color: var(--primary-blue); }
-
-        .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; }
-        .hamburger span { display: block; width: 28px; height: 3px; background: white; border-radius: 3px; transition: 0.3s; }
-
-        /* --- TREŚĆ STRONY --- */
-        .site-wrapper {
-            position: relative;
-            min-height: 100vh;
-            padding-top: calc(var(--nav-height) + 40px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-bottom: 80px;
+        
+        /* NOWY PRZYCISK W MENU */
+        .nav-cta { 
+            background: transparent; border: 2px solid var(--primary-blue); color: white !important; 
+            padding: 8px 18px; border-radius: 50px; transition: 0.3s;
+            box-shadow: 0 0 15px rgba(47, 159, 230, 0.2);
         }
+        .nav-cta:hover { background: var(--primary-blue); box-shadow: 0 0 25px rgba(47, 159, 230, 0.4); }
 
-        .site-wrapper::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('boisko.png') no-repeat center center/cover;
-            z-index: -1;
-        }
-
-        .kit-container {
-            display: flex;
-            max-width: 1100px;
-            width: 90%;
-            gap: 50px;
-            align-items: center;
-            background: var(--glass-bg);
-            backdrop-filter: blur(25px);
-            border: 1px solid var(--glass-border);
-            border-radius: 40px;
-            padding: 60px;
-            margin-bottom: 40px;
+        /* --- KONTENER PRODUKTU (STYL PLAKATOWY) --- */
+        .product-section {
+            display: flex; max-width: 1100px; width: 90%; margin: 40px auto; gap: 40px;
+            align-items: center; background: var(--glass-bg); backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border); border-radius: 40px; padding: 50px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        .kit-image { flex: 1; display: flex; justify-content: center; }
-        .kit-image img { max-width: 100%; filter: drop-shadow(0 15px 35px rgba(0,0,0,0.8)); transition: 0.5s; }
-        .kit-container:hover .kit-image img { transform: scale(1.08); }
-
-        .kit-info { flex: 1.2; }
-        h2 { font-size: 2.5rem; margin-bottom: 15px; text-transform: uppercase; font-weight: 900; }
-        h2 span { color: var(--primary-blue); display: block; }
-        
-        .price-list { margin-top: 15px; }
-        .price-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px solid var(--glass-border);
+        .product-image { flex: 1; display: flex; justify-content: center; align-items: center; }
+        .product-image img { 
+            max-width: 100%; height: auto; 
+            filter: drop-shadow(0 15px 35px rgba(0,0,0,0.9)); 
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .item-name { font-weight: 700; font-size: 1.1rem; }
-        .item-price { color: var(--friendly-green); font-weight: 900; font-size: 1.3rem; }
+        .product-section:hover .product-image img { transform: scale(1.05) translateY(-10px); }
 
-        /* --- MOBILNOŚĆ --- */
+        .product-info { flex: 1.2; }
+        .product-info h2 { font-size: 2.8rem; text-transform: uppercase; font-weight: 900; line-height: 1; margin-bottom: 15px; }
+        .product-info h2 span { color: var(--primary-blue); display: block; }
+        .product-desc { color: #aaa; margin-bottom: 25px; font-size: 0.95rem; }
+
+        /* LISTA CEN */
+        .price-list { margin-bottom: 30px; }
+        .price-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .price-item:last-of-type { border-bottom: none; }
+        .price-label { font-weight: 700; font-size: 1.05rem; }
+        .price-label span { display: block; font-size: 0.75rem; color: var(--primary-blue); font-weight: 400; }
+        .price-value { color: var(--friendly-green); font-weight: 900; font-size: 1.3rem; }
+
+        /* RAMKA PODSUMOWANIA */
+        .summary-box {
+            padding: 20px; background: rgba(46, 204, 113, 0.05);
+            border: 2px dashed var(--friendly-green); border-radius: 20px; text-align: center;
+        }
+        .summary-box strong { font-size: 1.3rem; display: block; }
+        .summary-box p { font-size: 0.8rem; color: #888; }
+
+        /* HAMBURGER */
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .hamburger span { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
         @media (max-width: 900px) {
-            .hamburger { display: flex; z-index: 10001; }
-            .nav-menu { 
-                position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; 
-                background: rgba(10,10,10,0.98); flex-direction: column; justify-content: center; 
-                transition: 0.5s; gap: 30px; 
-            }
-            .nav-menu.active { right: 0; }
-            .kit-container { flex-direction: column; padding: 40px 25px; text-align: center; }
+            .product-section { flex-direction: column; padding: 40px 20px; text-align: center; }
+            .product-info h2 { font-size: 2rem; }
             .price-item { text-align: left; }
+            .hamburger { display: flex; }
+            .nav-menu { display: none; }
         }
     </style>
 </head>
 <body>
-
-<a href="https://www.facebook.com/profile.php?id=100057134371999" target="_blank" class="fb-float">
-    <span>f</span>
-</a>
 
 <nav class="main-navbar">
     <div class="nav-container">
@@ -147,77 +113,88 @@
             <li><a href="strefar.html">Strefa Rodzica</a></li>
             <li><a href="terminarz.html">Terminarz</a></li>
             <li><a href="stroje.html" style="color: var(--primary-blue);">Stroje</a></li>
+            <li><a href="index.html#zapisy" class="nav-cta">Zapisz się</a></li>
         </ul>
-        <div class="hamburger" id="hamburger">
-            <span></span><span></span><span></span>
-        </div>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </div>
 </nav>
 
 <div class="site-wrapper">
 
-    <div class="kit-container">
-        <div class="kit-image"><img src="stroje.png" alt="Strój Meczowy"></div>
-        <div class="kit-info">
-            <h2>Strój <span>Meczowy</span></h2>
+    <section class="product-section">
+        <div class="product-image"><img src="stroje.png" alt="Strój Meczowy"></div>
+        <div class="product-info">
+            <h2>Oficjalny <span>Strój Meczowy</span></h2>
+            <p class="product-desc">Poczuj się jak profesjonalista. Nasze stroje łączą technologię Adidas z dumą reprezentowania barw Akademii.</p>
             <div class="price-list">
                 <div class="price-item">
-                    <div class="item-name">Komplet Adidas (Koszulka, spodenki, getry)</div>
-                    <div class="item-price">180 zł</div>
+                    <div class="price-label">Koszulka Adidas <span>Oddychająca / Niebieska</span></div>
+                    <div class="price-value">85 zł</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-label">Spodenki Adidas <span>Granatowe</span></div>
+                    <div class="price-value">55 zł</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-label">Skarpetogetry <span>Wytrzymałe</span></div>
+                    <div class="price-value">30 zł</div>
                 </div>
             </div>
+            <div class="summary-box">
+                <strong>Pełny zestaw: 170 zł</strong>
+                <p>O rozmiary pytaj trenera przed treningiem.</p>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div class="kit-container">
-        <div class="kit-image"><img src="bluza.png" alt="Bluza Adidas"></div>
-        <div class="kit-info">
-            <h2>Bluza <span>Adidas</span></h2>
+    <section class="product-section">
+        <div class="product-image"><img src="bluza.png" alt="Bluza Adidas"></div>
+        <div class="product-info">
+            <h2>Bluza <span>Treningowa Adidas</span></h2>
+            <p class="product-desc">Idealna na chłodniejsze dni i treningi w terenie. Wysoka jakość i komfort ruchu.</p>
             <div class="price-list">
                 <div class="price-item">
-                    <div class="item-name">Rozmiar Junior (128-164)</div>
-                    <div class="item-price">100 zł</div>
+                    <div class="price-label">Rozmiar Junior <span>128 cm - 164 cm</span></div>
+                    <div class="price-value">100 zł</div>
                 </div>
                 <div class="price-item">
-                    <div class="item-name">Rozmiar Senior</div>
-                    <div class="item-price">120 zł</div>
+                    <div class="price-label">Rozmiar Senior <span>S - XL</span></div>
+                    <div class="price-value">120 zł</div>
                 </div>
             </div>
+            <div class="summary-box">
+                <p>Produkt dostępny na zamówienie u trenera.</p>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div class="kit-container">
-        <div class="kit-image"><img src="kurtka.png" alt="Kurtka Adidas"></div>
-        <div class="kit-info">
+    <section class="product-section">
+        <div class="product-image"><img src="kurtka.png" alt="Kurtka Adidas"></div>
+        <div class="product-info">
             <h2>Kurtka <span>Przeciwdeszczowa</span></h2>
+            <p class="product-desc">Ochrona przed wiatrem i deszczem. Niezbędna w torbie każdego zawodnika AP JŁ Wawer.</p>
             <div class="price-list">
                 <div class="price-item">
-                    <div class="item-name">Rozmiar Junior (128-164)</div>
-                    <div class="item-price">140 zł</div>
+                    <div class="price-label">Rozmiar Junior <span>128 cm - 164 cm</span></div>
+                    <div class="price-value">140 zł</div>
                 </div>
                 <div class="price-item">
-                    <div class="item-name">Rozmiar Senior</div>
-                    <div class="item-price">160 zł</div>
+                    <div class="price-label">Rozmiar Senior <span>S - XL</span></div>
+                    <div class="price-value">160 zł</div>
                 </div>
             </div>
+            <div class="summary-box">
+                <p>Zamówienia realizowane w cyklach miesięcznych.</p>
+            </div>
         </div>
-    </div>
+    </section>
 
 </div>
 
 <script>
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
-
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-
-    document.querySelectorAll('.nav-menu a').forEach(n => n.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    }));
+    hamburger.addEventListener('click', () => { navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex'; });
 </script>
 
 </body>
