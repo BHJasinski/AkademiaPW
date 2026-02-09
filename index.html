@@ -102,7 +102,7 @@
         .kit-preview-container { display: flex; align-items: center; justify-content: center; gap: 40px; max-width: 1000px; margin: 0 auto; background: var(--glass-bg); padding: 40px; border-radius: 30px; border: 1px solid var(--glass-border); backdrop-filter: blur(20px); }
         .kit-preview-img img { max-width: 300px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); }
 
-        /* --- NOWE SEKCJE: KROKI I ATUTY (ZAKTUALIZOWANE) --- */
+        /* --- KROKI I ATUTY --- */
         .section-title { text-align: center; margin: 40px 0; text-transform: uppercase; font-size: 2.2rem; font-weight: 900; }
         
         .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; padding: 0 5%; }
@@ -124,7 +124,7 @@
         .glass-tile h3 { font-size: 1.1rem; font-weight: 900; text-transform: uppercase; margin-bottom: 5px; color: var(--primary-blue); }
         .glass-tile p { font-size: 0.9rem; color: #eee; }
 
-        /* --- RESZTA --- */
+        /* --- GALERIA I EKSPERT --- */
         .gallery-section { padding: 60px 5%; }
         .single-photo-container { max-width: 1000px; margin: 0 auto; background: var(--glass-bg); padding: 15px; border-radius: 30px; border: 1px solid var(--glass-border); }
         .single-photo-container img { width: 100%; border-radius: 20px; display: block; }
@@ -135,8 +135,30 @@
         .testimonials { padding: 60px 5%; max-width: 1000px; margin: 0 auto; }
         .testimonial-item { font-style: italic; background: rgba(255,255,255,0.05); padding: 25px; border-radius: 20px; margin-bottom: 20px; border-left: 4px solid var(--friendly-green); }
 
-        footer { text-align: center; padding: 60px 40px; background: rgba(0,0,0,0.9); color: #888; }
-        .footer-image { max-width: 100%; width: 500px; height: auto; margin-bottom: 30px; filter: drop-shadow(0 0 15px rgba(47, 159, 230, 0.3)); }
+        /* --- NOWA SZKLANA STOPKA --- */
+        footer {
+            text-align: center;
+            padding: 60px 5%;
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            position: relative;
+            z-index: 1;
+            margin-top: 40px;
+        }
+        .footer-container { max-width: 1200px; margin: 0 auto; }
+        .footer-image {
+            max-width: 100%;
+            width: 700px;
+            height: auto;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5));
+            transition: transform 0.3s ease;
+        }
+        .footer-image:hover { transform: scale(1.02); }
+        footer p { font-size: 0.85rem; letter-spacing: 1px; opacity: 0.7; }
 
         @media (max-width: 900px) {
             h1 { font-size: 2.2rem; }
@@ -170,7 +192,7 @@
         <div class="hero-glass-card">
             <h1>Akademia Piłkarska<br><span>JŁ Wawer</span></h1>
             <p>Najmłodsi mistrzowie w Wawrze trenują z nami! Od 2011 roku budujemy pasję, radość i piłkarskie charaktery.</p>
-            <br><a href="#zapisy" class="cta-button">ODBIERZ DARMOWY TRENING!</a><br><br>
+            <br><a href="#zapisy" class="cta-button">ODBIERZ DARMOWY TRENING!</a><br><br><br>
             <img src="certyfikat.png" alt="PZPN" style="width: 120px; margin-top: 20px;">
         </div>
     </header>
@@ -210,7 +232,7 @@
             <div class="step-card">
                 <div class="step-number">01</div>
                 <h3>Kontakt</h3>
-                <p>Zadzwoń do nas, a my dobierzemy odpowiednią grupę dla Twojego dziecka.</p>
+                <p>Zadzwoń do nas, a we dobierzemy odpowiednią grupę dla Twojego dziecka.</p>
             </div>
             <div class="step-card">
                 <div class="step-number">02</div>
@@ -258,11 +280,15 @@
             <p><strong>Zadzwoń do nas: +48 602 281 550</strong></p>
             <br><a href="tel:+48602281550" class="cta-button">ZAREZERWUJ MIEJSCE</a>
         </div>
-    </header>
+    </section>
 
     <footer>
-        <img src="stopa.png" alt="Stopka AP JŁ Wawer" class="footer-image">
-        <p>&copy; 2026 Akademia Piłkarska JŁ Wawer. Projekt: Jasiński Bartosz</p>
+        <div class="footer-container">
+            <img src="stopa.png" alt="Partnerzy AP JŁ Wawer" class="footer-image">
+            <div class="footer-info">
+                <p>&copy; 2026 Akademia Piłkarska JŁ Wawer. Projekt strony: Jasiński Bartosz</p>
+            </div>
+        </div>
     </footer>
 </div>
 
