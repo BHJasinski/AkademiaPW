@@ -49,11 +49,13 @@
         /* --- GRID TRENERÓW --- */
         .coaches-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Zmienione na 3 kolumny dla lepszego wyglądu */
+            /* Auto-fit sprawi, że trenerzy będą się ładnie układać w rzędach */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
             gap: 25px;
             width: 100%;
-            max-width: 1100px;
+            max-width: 1200px;
             margin-bottom: 50px;
+            justify-content: center;
         }
 
         .coach-card {
@@ -186,6 +188,14 @@
             <div class="coach-info">
                 <h3>Damian Olszewski</h3>
                 <p>Trener UEFA B. Ekspert od techniki.</p>
+            </div>
+        </div>
+
+        <div class="coach-card" onclick="toggleActive(this)">
+            <div class="coach-img-box"><img src="trener7.png" alt="Wiktor Komorowski"></div>
+            <div class="coach-info">
+                <h3>Wiktor Komorowski</h3>
+                <p>Trener UEFA C. Pasjonat rozwoju młodych talentów.</p>
             </div>
         </div>
     </div>
