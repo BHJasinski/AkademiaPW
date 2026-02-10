@@ -29,15 +29,20 @@
             align-items: center;
         }
 
+        /* --- ZMODYFIKOWANE TŁO: Bardziej soczyste --- */
         .site-wrapper::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: 
-                radial-gradient(circle at 50% 50%, rgba(47, 159, 230, 0.15) 0%, transparent 50%),
-                linear-gradient(rgba(6, 11, 19, 0.8), rgba(6, 11, 19, 0.9)),
+                /* Mocniejszy niebieski blask w centrum */
+                radial-gradient(circle at 50% 50%, rgba(47, 159, 230, 0.25) 0%, transparent 60%),
+                /* Jaśniejszy gradient nakładkowy, żeby zieleń boiska "przebijała" */
+                linear-gradient(rgba(6, 11, 19, 0.5), rgba(6, 11, 19, 0.7)),
                 url('boisko.png') center/cover;
             z-index: -1;
+            /* Podbicie nasycenia tła */
+            filter: saturate(1.4) brightness(1.1);
         }
 
         h1 {
@@ -62,27 +67,25 @@
 
         /* --- KARTA TRENERA --- */
         .coach-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.07);
             border: 2px solid rgba(47, 159, 230, 0.3);
             border-radius: 20px;
-            /* Usunąłem overflow: hidden, żeby postać mogła "wyjść" górą jeśli trzeba, 
-               ale w tym układzie lepiej powiększyć całą kartę */
             display: flex;
             flex-direction: column;
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
             position: relative;
         }
 
         .coach-img-box {
             width: 100%;
-            height: 450px; /* Solidna wysokość, żeby głowy nie uciekały */
+            height: 450px;
             display: flex;
-            align-items: flex-end; /* Zdjęcie stoi na dole ramki */
+            align-items: flex-end;
             justify-content: center;
             padding: 10px;
-            overflow: hidden; /* Zdjęcie nie ucieknie poza dół karty */
+            overflow: hidden;
             border-radius: 20px 20px 0 0;
         }
 
@@ -90,13 +93,14 @@
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
-            filter: grayscale(0.3) brightness(0.8);
+            /* Mniej szarości na starcie, żeby było żywiej */
+            filter: grayscale(0.2) brightness(0.9);
             transition: 0.5s ease;
         }
 
         .coach-info {
             padding: 20px;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.75);
             border-top: 2px solid var(--primary-blue);
             text-align: center;
             min-height: 150px;
@@ -113,20 +117,20 @@
         .coach-info p {
             font-size: 0.9rem;
             line-height: 1.5;
-            color: #ddd;
+            color: #fff; /* Jaśniejszy tekst dla lepszej czytelności */
         }
 
-        /* --- EFEKT NAJECHANIA (Gamingowy Zoom) --- */
+        /* --- EFEKT NAJECHANIA --- */
         .coach-card:hover {
-            transform: scale(1.05); /* Powiększa CAŁĄ kartę, nic nie ucina */
+            transform: scale(1.05);
             border-color: var(--primary-blue);
-            box-shadow: 0 0 40px var(--neon-glow);
+            box-shadow: 0 0 50px rgba(47, 159, 230, 0.5);
             z-index: 10;
         }
 
         .coach-card:hover img {
             filter: grayscale(0) brightness(1.1);
-            transform: scale(1.02); /* Minimalny zoom samej postaci */
+            transform: scale(1.02);
         }
 
         .back-button {
@@ -147,7 +151,6 @@
             box-shadow: 0 0 20px var(--primary-blue);
         }
 
-        /* Responsywność */
         @media (max-width: 1100px) { .coaches-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 650px) { .coaches-grid { grid-template-columns: 1fr; } }
     </style>
