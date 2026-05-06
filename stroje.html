@@ -18,7 +18,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: white; line-height: 1.6; overflow-x: hidden; }
 
-        /* --- TŁO STRONY --- */
         .site-wrapper { position: relative; min-height: 100vh; padding-top: var(--nav-height); padding-bottom: 60px; }
         .site-wrapper::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -26,7 +25,6 @@
             z-index: -1;
         }
 
-        /* --- NAWIGACJA --- */
         .main-navbar {
             position: fixed; top: 0; width: 100%; height: var(--nav-height);
             background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(15px);
@@ -41,7 +39,6 @@
         .nav-menu a { color: white; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; transition: 0.3s; }
         .nav-menu a:hover { color: var(--primary-blue); }
         
-        /* NOWY PRZYCISK W MENU */
         .nav-cta { 
             background: transparent; border: 2px solid var(--primary-blue); color: white !important; 
             padding: 8px 18px; border-radius: 50px; transition: 0.3s;
@@ -49,7 +46,6 @@
         }
         .nav-cta:hover { background: var(--primary-blue); box-shadow: 0 0 25px rgba(47, 159, 230, 0.4); }
 
-        /* --- KONTENER PRODUKTU (STYL PLAKATOWY) --- */
         .product-section {
             display: flex; max-width: 1100px; width: 90%; margin: 40px auto; gap: 40px;
             align-items: center; background: var(--glass-bg); backdrop-filter: blur(20px);
@@ -70,18 +66,27 @@
         .product-info h2 span { color: var(--primary-blue); display: block; }
         .product-desc { color: #aaa; margin-bottom: 25px; font-size: 0.95rem; }
 
-        /* LISTA CEN */
         .price-list { margin-bottom: 30px; }
         .price-item {
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex; justify-content: space-between; align-items: flex-start;
+            gap: 20px;
             padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         .price-item:last-of-type { border-bottom: none; }
-        .price-label { font-weight: 700; font-size: 1.05rem; }
+        .price-label {
+            font-weight: 700;
+            font-size: 1.05rem;
+            flex: 1;
+        }
         .price-label span { display: block; font-size: 0.75rem; color: var(--primary-blue); font-weight: 400; }
-        .price-value { color: var(--friendly-green); font-weight: 900; font-size: 1.3rem; }
+        .price-value {
+            color: var(--friendly-green);
+            font-weight: 900;
+            font-size: 1.3rem;
+            white-space: nowrap;
+            text-align: right;
+        }
 
-        /* RAMKA PODSUMOWANIA */
         .summary-box {
             padding: 20px; background: rgba(46, 204, 113, 0.05);
             border: 2px dashed var(--friendly-green); border-radius: 20px; text-align: center;
@@ -89,7 +94,6 @@
         .summary-box strong { font-size: 1.3rem; display: block; }
         .summary-box p { font-size: 0.8rem; color: #888; }
 
-        /* HAMBURGER */
         .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
         .hamburger span { width: 25px; height: 3px; background: white; border-radius: 2px; }
 
@@ -99,6 +103,47 @@
             .price-item { text-align: left; }
             .hamburger { display: flex; }
             .nav-menu { display: none; }
+        }
+
+        @media (max-width: 520px) {
+            .product-section {
+                width: 92%;
+                padding: 32px 18px;
+                border-radius: 28px;
+                gap: 24px;
+            }
+
+            .product-info {
+                width: 100%;
+            }
+
+            .product-info h2 {
+                font-size: 1.85rem;
+            }
+
+            .product-desc {
+                font-size: 0.88rem;
+            }
+
+            .price-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+                text-align: left;
+            }
+
+            .price-label {
+                font-size: 1rem;
+            }
+
+            .price-value {
+                text-align: left;
+                font-size: 1.15rem;
+            }
+
+            .summary-box strong {
+                font-size: 1.05rem;
+            }
         }
     </style>
 </head>
@@ -128,12 +173,20 @@
             <p class="product-desc">Poczuj się jak profesjonalista. Nasze stroje łączą technologię Nike z dumą reprezentowania barw Akademii.</p>
             <div class="price-list">
                 <div class="price-item">
-                    <div class="price-label">Koszulka Nike <span>Oddychająca / Niebieska</span></div>
-                    <div class="price-value">85/95 (senior) zł</div>
+                    <div class="price-label">Koszulka Nike Junior <span>Oddychająca / Niebieska</span></div>
+                    <div class="price-value">85 zł</div>
                 </div>
                 <div class="price-item">
-                    <div class="price-label">Spodenki Nike <span>Granatowe</span></div>
-                    <div class="price-value">55/70 (senior) zł</div>
+                    <div class="price-label">Koszulka Nike Senior <span>Oddychająca / Niebieska</span></div>
+                    <div class="price-value">95 zł</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-label">Spodenki Nike Junior <span>Granatowe</span></div>
+                    <div class="price-value">55 zł</div>
+                </div>
+                <div class="price-item">
+                    <div class="price-label">Spodenki Nike Senior <span>Granatowe</span></div>
+                    <div class="price-value">70 zł</div>
                 </div>
                 <div class="price-item">
                     <div class="price-label">Skarpetogetry <span>Wytrzymałe</span></div>
@@ -194,7 +247,10 @@
 <script>
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
-    hamburger.addEventListener('click', () => { navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex'; });
+
+    hamburger.addEventListener('click', () => {
+        navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+    });
 </script>
 
 </body>
