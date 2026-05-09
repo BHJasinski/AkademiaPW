@@ -135,6 +135,40 @@
         .testimonials { padding: 60px 5%; max-width: 1000px; margin: 0 auto; }
         .testimonial-item { font-style: italic; background: rgba(255,255,255,0.05); padding: 25px; border-radius: 20px; margin-bottom: 20px; border-left: 4px solid var(--friendly-green); }
 
+        /* --- FORMULARZ ZAPISU --- */
+        .signup-card {
+            max-width: 1000px;
+        }
+
+        .signup-card h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .signup-card p {
+            color: #e8e8e8;
+        }
+
+        .tally-form-wrapper {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 24px;
+            overflow: hidden;
+            padding: 10px;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+        }
+
+        .tally-form-wrapper iframe {
+            display: block;
+            border-radius: 18px;
+        }
+
+        .phone-note {
+            margin-top: 30px;
+        }
+
         /* --- NOWA SZKLANA STOPKA --- */
         footer {
             text-align: center;
@@ -164,6 +198,8 @@
             h1 { font-size: 2.2rem; }
             .kit-preview-container { flex-direction: column; text-align: center; }
             .section-title { font-size: 1.8rem; }
+            .hero-glass-card { padding: 30px 20px; }
+            .signup-card h2 { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -275,10 +311,28 @@
     </section>
 
     <section class="hero" id="zapisy">
-        <div class="hero-glass-card" style="margin-bottom: 50px;">
-            <h2 style="font-weight: 900; text-transform: uppercase;">Widzimy się na treningu!</h2>
-            <p><strong>Zadzwoń do nas: +48 602 281 550</strong></p>
-            <br><a href="tel:+48602281550" class="cta-button">ZAREZERWUJ MIEJSCE</a>
+        <div class="hero-glass-card signup-card" style="margin-bottom: 50px;">
+            <h2>Zapisz dziecko na darmowy trening</h2>
+            <p>Wypełnij krótki formularz, a skontaktujemy się z Tobą w sprawie pierwszego treningu.</p>
+
+            <div class="tally-form-wrapper">
+                <iframe 
+                    data-tally-src="https://tally.so/embed/VLv5xj?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+                    loading="lazy" 
+                    width="100%" 
+                    height="725" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0" 
+                    title="Zapis dziecka na darmowy trening w Akademii">
+                </iframe>
+            </div>
+
+            <div class="phone-note">
+                <p><strong>Wolisz zadzwonić? +48 602 281 550</strong></p>
+                <br>
+                <a href="tel:+48602281550" class="cta-button">ZADZWOŃ DO NAS</a>
+            </div>
         </div>
     </section>
 
@@ -307,6 +361,30 @@
             navMenu.classList.remove('active');
         });
     });
+</script>
+
+<script>
+    var d = document,
+        w = "https://tally.so/widgets/embed.js",
+        v = function () {
+            if (typeof Tally !== "undefined") {
+                Tally.loadEmbeds();
+            } else {
+                d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function (e) {
+                    e.src = e.dataset.tallySrc;
+                });
+            }
+        };
+
+    if (typeof Tally !== "undefined") {
+        v();
+    } else if (d.querySelector('script[src="' + w + '"]') == null) {
+        var s = d.createElement("script");
+        s.src = w;
+        s.onload = v;
+        s.onerror = v;
+        d.body.appendChild(s);
+    }
 </script>
 
 </body>
