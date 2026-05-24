@@ -96,6 +96,115 @@
         .mission-card { background: rgba(0,0,0,0.5); border: 1px solid var(--glass-border); padding: 30px; border-radius: 20px; border-top: 4px solid var(--primary-blue); backdrop-filter: blur(10px); }
         .mission-card h3 { color: var(--primary-blue); margin-bottom: 10px; text-transform: uppercase; font-weight: 900; }
 
+        /* --- BOX INFO: WSPÓŁPRACA Z POLONIĄ WARSZAWA --- */
+        .partner-info-section {
+            padding: 45px 5% 70px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .partner-info-box {
+            position: relative;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 35px;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(47, 159, 230, 0.18), rgba(46, 204, 113, 0.08));
+            border: 1px solid var(--glass-border);
+            border-left: 5px solid var(--primary-blue);
+            border-radius: 30px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 55px rgba(0,0,0,0.35);
+            overflow: hidden;
+        }
+
+        .partner-info-box::after {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            right: -90px;
+            top: -90px;
+            background: radial-gradient(circle, rgba(46,204,113,0.18), transparent 70%);
+            pointer-events: none;
+        }
+
+        .partner-logo-slot {
+            min-height: 180px;
+            border-radius: 24px;
+            background: rgba(255,255,255,0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35), 0 15px 30px rgba(0,0,0,0.25);
+        }
+
+        .partner-logo-slot img {
+            max-width: 100%;
+            max-height: 130px;
+            object-fit: contain;
+        }
+
+        .partner-info-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .partner-kicker {
+            display: inline-block;
+            margin-bottom: 12px;
+            padding: 7px 14px;
+            border-radius: 50px;
+            background: rgba(46, 204, 113, 0.16);
+            color: var(--friendly-green);
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .partner-info-content h2 {
+            font-size: 2rem;
+            line-height: 1.15;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .partner-info-content h2 span {
+            color: var(--primary-blue);
+        }
+
+        .partner-info-content p {
+            color: #e8e8e8;
+            margin-bottom: 14px;
+        }
+
+        .partner-info-content strong {
+            color: #fff;
+        }
+
+        @media (max-width: 800px) {
+            .partner-info-box {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 30px 22px;
+            }
+
+            .partner-logo-slot {
+                min-height: 140px;
+                max-width: 240px;
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            .partner-info-content h2 {
+                font-size: 1.55rem;
+            }
+        }
+
         /* --- STRÓJ PREVIEW --- */
         .kit-preview { padding: 60px 5%; }
         .kit-preview h2 { text-align: center; margin-bottom: 40px; text-transform: uppercase; font-size: 2.2rem; font-weight: 900; }
@@ -246,6 +355,23 @@
             <div class="mission-card">
                 <h3>Wielkie Cele</h3>
                 <p>Naszym celem jest przygotowanie zawodników do gry w wiodących klubach, nie zapominając o dobrej zabawie.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="partner-info-section" id="wspolpraca-polonia">
+        <div class="partner-info-box">
+            <div class="partner-logo-slot">
+                <img src="polonia-warszawa.png" alt="Logo Polonia Warszawa">
+            </div>
+            <div class="partner-info-content">
+                <span class="partner-kicker">Nowa współpraca</span>
+                <h2>Akademia Piłkarska Wawer rozpoczyna współpracę z <span>Polonią Warszawa</span></h2>
+                <p><strong>Akademia Piłkarska Wawer oficjalnie rozpoczyna współpracę z klubem Polonia Warszawa.</strong></p>
+                <p>Umowa została podpisana w obecności przedstawicieli obu stron, w tym właściciela klubu Grégoire’a Nitota, dyrektora akademii Pawła Olczaka oraz koordynatora projektu klubów partnerskich Artura Cegiełki.</p>
+                <p>Ze strony Akademii Wawer w spotkaniu uczestniczyli prezes Janusz Łagiewnicki oraz trener Aleks Wróblewski.</p>
+                <p><strong>To początek wspólnych działań szkoleniowych.</strong></p>
             </div>
         </div>
     </section>
