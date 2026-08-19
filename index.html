@@ -207,17 +207,17 @@
 
 
 
-        /* --- PÓŁKOLONIE PIŁKARSKIE 2026 --- */
-        .summer-camp-section {
+        /* --- HARMONOGRAM WYDARZEŃ I ZAPISY --- */
+        .events-section {
             padding: 45px 5% 70px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .summer-camp-card {
+        .events-card {
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(47, 159, 230, 0.22), rgba(46, 204, 113, 0.12), rgba(255, 193, 7, 0.08));
+            background: linear-gradient(135deg, rgba(47, 159, 230, 0.20), rgba(46, 204, 113, 0.10));
             border: 1px solid var(--glass-border);
             border-top: 4px solid var(--friendly-green);
             border-radius: 32px;
@@ -226,30 +226,18 @@
             box-shadow: 0 25px 60px rgba(0,0,0,0.38);
         }
 
-        .summer-camp-card::before {
+        .events-card::before {
             content: "";
             position: absolute;
-            width: 320px;
-            height: 320px;
-            right: -120px;
-            top: -120px;
-            background: radial-gradient(circle, rgba(47,159,230,0.22), transparent 70%);
+            width: 340px;
+            height: 340px;
+            right: -130px;
+            top: -130px;
+            background: radial-gradient(circle, rgba(47,159,230,0.24), transparent 70%);
             pointer-events: none;
         }
 
-        .summer-camp-card::after {
-            content: "⚽";
-            position: absolute;
-            right: 30px;
-            bottom: -35px;
-            font-size: 9rem;
-            line-height: 1;
-            opacity: 0.08;
-            transform: rotate(-12deg);
-            pointer-events: none;
-        }
-
-        .camp-kicker {
+        .events-kicker {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -264,13 +252,14 @@
             letter-spacing: 1px;
         }
 
-        .summer-camp-header {
+        .events-header {
             position: relative;
             z-index: 1;
-            max-width: 850px;
+            max-width: 900px;
+            margin-bottom: 28px;
         }
 
-        .summer-camp-header h2 {
+        .events-header h2 {
             font-size: 2.35rem;
             line-height: 1.1;
             font-weight: 900;
@@ -278,156 +267,95 @@
             margin-bottom: 15px;
         }
 
-        .summer-camp-header h2 span { color: var(--primary-blue); }
-        .summer-camp-header p { color: #eeeeee; font-size: 1.02rem; }
+        .events-header h2 span { color: var(--primary-blue); }
+        .events-header p { color: #eeeeee; font-size: 1.02rem; }
 
-        .camp-dates {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 16px;
-            margin: 28px 0;
+        .events-grid {
             position: relative;
             z-index: 1;
-        }
-
-        .camp-date-box {
-            background: rgba(0,0,0,0.34);
-            border: 1px solid rgba(255,255,255,0.13);
-            border-radius: 20px;
-            padding: 20px;
-        }
-
-        .camp-date-box strong {
-            display: block;
-            color: var(--friendly-green);
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            margin-bottom: 6px;
-        }
-
-        .camp-date-box span {
-            font-size: 1.25rem;
-            font-weight: 900;
-        }
-
-        .camp-details-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 24px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .camp-benefits,
-        .camp-info-panel {
-            background: rgba(0,0,0,0.28);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 24px;
-            padding: 26px;
-        }
-
-        .camp-benefits h3,
-        .camp-info-panel h3 {
-            color: var(--primary-blue);
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-            font-size: 1.15rem;
-        }
-
-        .camp-benefits ul {
-            list-style: none;
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
+            gap: 18px;
         }
 
-        .camp-benefits li {
-            color: #f4f4f4;
-            padding-left: 28px;
-            position: relative;
-            font-size: 0.94rem;
+        .event-box {
+            background: rgba(0,0,0,0.34);
+            border: 1px solid rgba(255,255,255,0.13);
+            border-radius: 22px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            min-height: 220px;
+            transition: 0.3s;
         }
 
-        .camp-benefits li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            top: 0;
+        .event-box:hover {
+            transform: translateY(-4px);
+            border-color: rgba(47,159,230,0.55);
+            background: rgba(0,0,0,0.44);
+        }
+
+        .event-type {
             color: var(--friendly-green);
+            font-size: 0.74rem;
             font-weight: 900;
-        }
-
-        .camp-info-list {
-            display: grid;
-            gap: 12px;
-            margin-bottom: 22px;
-        }
-
-        .camp-info-item {
-            background: rgba(255,255,255,0.06);
-            border-radius: 16px;
-            padding: 14px 16px;
-            border-left: 3px solid var(--friendly-green);
-        }
-
-        .camp-info-item small {
-            display: block;
-            color: #bdbdbd;
             text-transform: uppercase;
-            font-weight: 900;
-            font-size: 0.68rem;
             letter-spacing: 0.8px;
-            margin-bottom: 3px;
+            margin-bottom: 8px;
         }
 
-        .camp-info-item strong { color: #fff; }
+        .event-box h3 {
+            font-size: 1.25rem;
+            line-height: 1.25;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
 
-        .camp-alert {
-            margin-top: 24px;
+        .event-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            padding: 9px 13px;
+            border-radius: 12px;
+            background: rgba(47,159,230,0.12);
+            border: 1px solid rgba(47,159,230,0.25);
+            color: #fff;
+            font-weight: 900;
+            margin-bottom: 18px;
+        }
+
+        .event-note {
+            color: #cfcfcf;
+            font-size: 0.88rem;
+            margin-bottom: 18px;
+        }
+
+        .event-box .cta-button {
+            margin-top: auto;
+            align-self: flex-start;
+            padding: 13px 24px;
+            font-size: 0.78rem;
+        }
+
+        .events-alert {
+            position: relative;
+            z-index: 1;
+            margin-top: 22px;
             padding: 18px;
             border-radius: 18px;
             background: rgba(47, 159, 230, 0.13);
             border: 1px solid rgba(47,159,230,0.28);
             color: #f7f7f7;
-            position: relative;
-            z-index: 1;
-        }
-
-        .camp-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 18px;
-        }
-
-        .camp-secondary-button {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.18);
-            color: white;
-            padding: 14px 24px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 900;
-            text-transform: uppercase;
-            display: inline-block;
-            transition: 0.3s;
-            font-size: 0.82rem;
-        }
-
-        .camp-secondary-button:hover {
-            transform: translateY(-3px);
-            border-color: var(--primary-blue);
-            background: rgba(47,159,230,0.16);
         }
 
         @media (max-width: 900px) {
-            .summer-camp-card { padding: 30px 22px; }
-            .summer-camp-header h2 { font-size: 1.75rem; }
-            .camp-details-grid { grid-template-columns: 1fr; }
-            .camp-benefits ul { grid-template-columns: 1fr; }
-            .camp-actions { flex-direction: column; }
-            .camp-actions a { text-align: center; }
+            .events-card { padding: 30px 22px; }
+            .events-header h2 { font-size: 1.75rem; }
+            .events-grid { grid-template-columns: 1fr; }
+            .event-box { min-height: auto; }
+            .event-box .cta-button { width: 100%; text-align: center; }
         }
 
         /* --- STRÓJ PREVIEW --- */
@@ -550,7 +478,7 @@
                 <li><a href="trenerzy.html">Nasza Kadra</a></li>
                 <li><a href="strefar.html">Strefa Rodzica</a></li>
                 <li><a href="stroje.html">Stroje</a></li> 
-                <li><a href="#polkolonie">Półkolonie</a></li>
+                <li><a href="#polkolonie">Półkolonie i obóz</a></li>
                 <li><a href="terminarz.html">Terminarz</a></li>
                 <li><a href="regulamin.html">Regulamin</a></li>
                 <li><a href="#zapisy" class="nav-cta">Darmowy Trening</a></li>
@@ -564,7 +492,7 @@
             <h1>Akademia Piłkarska<br><span>JŁ Wawer</span></h1>
             <p>Najmłodsi mistrzowie w Wawrze trenują z nami! Od 2011 roku budujemy pasję, radość i piłkarskie charaktery.</p>
             <br><a href="#zapisy" class="cta-button">ODBIERZ DARMOWY TRENING!</a>
-            <a href="#polkolonie" class="camp-secondary-button" style="margin-left: 10px;">Półkolonie 2026</a><br><br><br>
+            <a href="#polkolonie" class="camp-secondary-button" style="margin-left: 10px;">Terminy i zapisy</a><br><br><br>
             <img src="certyfikat.png" alt="PZPN" style="width: 120px; margin-top: 20px;">
         </div>
     </header>
@@ -604,57 +532,50 @@
         </div>
     </section>
 
-    <section class="summer-camp-section" id="polkolonie">
-        <div class="summer-camp-card">
-            <div class="summer-camp-header">
-                <span class="camp-kicker">⚽🌞 Wakacje na sportowo</span>
-                <h2>Półkolonie piłkarskie <span>AP Wawer 2026</span></h2>
-                <p>Szukasz aktywnych, bezpiecznych i pełnych sportowych emocji wakacji dla swojego dziecka? Zapraszamy młodych pasjonatów piłki nożnej na wyjątkowe półkolonie organizowane przez Akademię Piłkarską Wawer.</p>
+    <section class="events-section" id="polkolonie">
+        <div class="events-card">
+            <div class="events-header">
+                <span class="events-kicker">⚽ Nadchodzące wydarzenia</span>
+                <h2>Półkolonie i obóz <span>AP Wawer</span></h2>
+                <p>Zapisy są już otwarte. Szczegóły organizacyjne będziemy uzupełniać na bieżąco. Na tym etapie publikujemy najważniejsze informacje: nazwę wydarzenia, termin i możliwość zgłoszenia dziecka.</p>
             </div>
 
-            <div class="camp-dates">
-                <div class="camp-date-box">
-                    <strong>I turnus</strong>
-                    <span>29.06 - 03.07.2026</span>
-                </div>
-                <div class="camp-date-box">
-                    <strong>II turnus</strong>
-                    <span>06.07 - 10.07.2026</span>
-                </div>
+            <div class="events-grid">
+                <article class="event-box">
+                    <div class="event-type">Półkolonie zimowe</div>
+                    <h3>Zimowa piłkarska przygoda</h3>
+                    <div class="event-date">📅 1–5 lutego</div>
+                    <p class="event-note">Liczba miejsc będzie ograniczona. Koszt i pozostałe szczegóły podamy w późniejszym terminie.</p>
+                    <a href="https://m.me/AkademiaWawer" target="_blank" rel="noopener" class="cta-button">Zapisz się</a>
+                </article>
+
+                <article class="event-box">
+                    <div class="event-type">Półkolonie letnie · turnus I</div>
+                    <h3>Wakacje z AP Wawer</h3>
+                    <div class="event-date">📅 28 czerwca–2 lipca</div>
+                    <p class="event-note">Zapisy przyjmujemy już teraz. Koszt i szczegóły programu pojawią się później.</p>
+                    <a href="https://m.me/AkademiaWawer" target="_blank" rel="noopener" class="cta-button">Zapisz się</a>
+                </article>
+
+                <article class="event-box">
+                    <div class="event-type">Półkolonie letnie · turnus II</div>
+                    <h3>Wakacje z AP Wawer</h3>
+                    <div class="event-date">📅 5–9 lipca</div>
+                    <p class="event-note">Zapisy przyjmujemy już teraz. Koszt i szczegóły programu pojawią się później.</p>
+                    <a href="https://m.me/AkademiaWawer" target="_blank" rel="noopener" class="cta-button">Zapisz się</a>
+                </article>
+
+                <article class="event-box">
+                    <div class="event-type">Letni obóz piłkarski</div>
+                    <h3>Obóz piłkarski AP Wawer</h3>
+                    <div class="event-date">📅 4–10 sierpnia</div>
+                    <p class="event-note">Możesz zgłosić zainteresowanie już teraz. Koszt i pełny program obozu podamy w późniejszym terminie.</p>
+                    <a href="https://m.me/AkademiaWawer" target="_blank" rel="noopener" class="cta-button">Zapisz się</a>
+                </article>
             </div>
 
-            <div class="camp-details-grid">
-                <div class="camp-benefits">
-                    <h3>Co zapewniamy?</h3>
-                    <ul>
-                        <li>Dwa treningi piłkarskie dziennie</li>
-                        <li>Profesjonalna i wykwalifikowana kadra trenerska</li>
-                        <li>Obiad oraz posiłek regeneracyjny</li>
-                        <li>Woda przez cały dzień</li>
-                        <li>Wyjście na basen</li>
-                        <li>Gry i zabawy ruchowe</li>
-                        <li>W drugim turnusie wyjazd do parku linowego</li>
-                        <li>Ubezpieczenie NNW</li>
-                    </ul>
-                </div>
-
-                <div class="camp-info-panel">
-                    <h3>Najważniejsze informacje</h3>
-                    <div class="camp-info-list">
-                        <div class="camp-info-item"><small>Miejsce</small><strong>ul. Patriotów 90, Miedzeszyn</strong></div>
-                        <div class="camp-info-item"><small>Godziny</small><strong>8:00 - 16:00</strong></div>
-                        <div class="camp-info-item"><small>Koszt</small><strong>850 zł / turnus</strong></div>
-                        <div class="camp-info-item"><small>Rodzeństwo</small><strong>Atrakcyjne rabaty przy zapisie rodzeństwa</strong></div>
-                    </div>
-                    <div class="camp-actions">
-                        <a href="tel:+48602281550" class="cta-button" style="padding: 14px 24px; font-size: 0.82rem;">Zadzwoń: 602 281 550</a>
-                        <a href="https://www.facebook.com/AkademiaWawer" target="_blank" class="camp-secondary-button">Napisz na Messengerze</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="camp-alert">
-                <strong>Liczba miejsc jest ograniczona!</strong> To nie tylko treningi, lecz także nowe przyjaźnie, sportowa przygoda, aktywny wypoczynek i wakacyjne wspomnienia. Do zobaczenia na boisku! ⚽💙💛
+            <div class="events-alert">
+                <strong>Zapisy trwają.</strong> Nie publikujemy jeszcze cen półkolonii ani obozu. Kliknij „Zapisz się”, aby wysłać zgłoszenie online do Akademii.
             </div>
         </div>
     </section>
